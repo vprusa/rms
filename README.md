@@ -1,2 +1,1 @@
-# hsms
-Household sharing management system
+# Household sharing management system
