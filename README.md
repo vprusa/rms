@@ -1,1 +1,1 @@
-# Household sharing management system
+# Roommates management system
