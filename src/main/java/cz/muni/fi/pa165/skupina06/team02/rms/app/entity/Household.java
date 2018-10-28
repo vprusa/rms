@@ -1,10 +1,14 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -33,6 +37,32 @@ public class Household {
     @NotNull
     @Column(nullable = false)
     private String state;
+
+    @OneToMany
+    private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
+
+    /**
+     * @return shopping list instance
+     */
+    public List<ShoppingList> getShoppingLists() {
+        return shoppingLists;
+    }
+
+    /**
+     * @param shoppingLists instance
+     */
+    public void setShoppingLists(List<ShoppingList> shoppingLists) {
+        this.shoppingLists = shoppingLists;
+    }
+
+    /**
+     * Adds Shopping list to list of Shopping lists of Household
+     * 
+     * @param shoppingList instance
+     */
+    public void addShoppingList(ShoppingList shoppingList) {
+        shoppingLists.add(shoppingList);
+    }
 
     /**
      * @return id
