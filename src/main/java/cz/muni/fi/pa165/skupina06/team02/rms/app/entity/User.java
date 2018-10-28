@@ -27,7 +27,9 @@ public class User {
 
 //  TODO: After implementing:
 //      - add households property
-//      - add items to buy
+
+    @OneToMany(mappedBy = "dedicatedBuyer")
+    private ShoppingItem items;
 
     public User(Long userID) {
         this.id = userID;
