@@ -74,7 +74,7 @@ public class Household {
     /**
      * Getter
      * 
-     * @return tennats instacne
+     * @return tenats instacne
      */
     public Set<User> getTenats() {
         return tenats;
@@ -83,9 +83,9 @@ public class Household {
     /**
      * Setter
      * 
-     * @param tennats the tennats to set
+     * @param tenats the tenats to set
      */
-    public void setTennats(Set<User> tenats) {
+    public void settenats(Set<User> tenats) {
         this.tenats = tenats;
     }
 
