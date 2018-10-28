@@ -2,9 +2,11 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
 import javax.validation.constraints.NotNull;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Class holding basic user info
+ *
  * @author Martin Lacko
  */
 @Entity
@@ -33,10 +35,11 @@ public class User {
 //      - add households property
 
     @OneToMany(mappedBy = "dedicatedBuyer")
-    private ShoppingItem items;
+    private List<ShoppingItem> items;
 
     /**
      * Constructor with specific ID
+     *
      * @param userID Specific ID for this user
      */
     public User(Long userID) {
