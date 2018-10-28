@@ -90,6 +90,25 @@ public class Household {
     }
 
     /**
+     * Default Constructor
+     *
+     * @param id
+     */
+    public Household() {
+    }
+    
+    /**
+     * Constructor
+     *
+     * @param id
+     */
+    public Household(Long id) {
+        super();
+        this.id = id;
+    }
+
+    
+    /**
      * @return shopping list instance
      */
     public List<ShoppingList> getShoppingLists() {

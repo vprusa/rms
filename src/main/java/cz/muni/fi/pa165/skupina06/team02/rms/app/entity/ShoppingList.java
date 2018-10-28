@@ -32,6 +32,24 @@ public class ShoppingList {
     private List<ShoppingItem> shoppingItems = new ArrayList<ShoppingItem>();
 
     /**
+     * Dfault eConstructor
+     *
+     * @param id
+     */
+    public ShoppingList() {
+    }
+
+    /**
+     * Constructor
+     *
+     * @param id
+     */
+    public ShoppingList(Long id) {
+        super();
+        this.id = id;
+    }
+
+    /**
      * @return shopping list instance
      */
     public List<ShoppingItem> getShoppingItems() {
