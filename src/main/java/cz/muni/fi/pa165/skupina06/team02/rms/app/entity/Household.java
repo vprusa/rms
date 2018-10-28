@@ -1,13 +1,18 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -41,13 +46,55 @@ public class Household {
     @OneToMany
     private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
 
+    @ManyToMany
+    private Set<User> tenats = new HashSet<User>();
+
+    /**
+     * Remove tenant
+     * 
+     * @param tenant
+     */
+    public void remoteTenant(User tenant) {
+        tenats.remove(tenant);
+    }
+
+    /**
+     * Add tenant to tenants and Household to tenant
+     * 
+     * @param tenant
+     */
+    public void addTenant(User tenant) {
+        tenats.add(tenant);
+        // TODO some other magic like:
+        // https://github.com/fi-muni/PA165/blob/864034ae6ae116da53c34e45b92edfe3a16b346b/eshop-persistence/src/main/java/cz/fi/muni/pa165/entity/Product.java#L81
+        // g.e.:
+        // tenant.addHousehold(this);
+    }
+
+    /**
+     * Getter
+     * 
+     * @return tennats instacne
+     */
+    public Set<User> getTenats() {
+        return tenats;
+    }
+
+    /**
+     * Setter
+     * 
+     * @param tennats the tennats to set
+     */
+    public void setTennats(Set<User> tenats) {
+        this.tenats = tenats;
+    }
+
     /**
      * @return shopping list instance
      */
     public List<ShoppingList> getShoppingLists() {
         return shoppingLists;
     }
-
 
     /**
      * Adds Shopping list to list of Shopping lists of Household
