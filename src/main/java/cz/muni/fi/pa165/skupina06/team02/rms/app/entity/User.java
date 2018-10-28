@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
 import javax.validation.constraints.NotNull;
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 /**
  * Class holding basic user info
@@ -31,11 +31,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-//  TODO: After implementing:
-//      - add households property
-
     @OneToMany(mappedBy = "dedicatedBuyer")
-    private List<ShoppingItem> items;
+    private List<ShoppingItem> items = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "tennats")
+    private Set<Household> households = new HashSet<>();
 
     /**
      * Constructor with specific ID
@@ -53,12 +53,34 @@ public class User {
     }
 
     /**
+     * @return Items, witch this user should buy
+     */
+    public List<ShoppingItem> getItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    /**
+     * @return Households in which this user lives
+     */
+    public Set<Household> getHouseholds() {
+        return Collections.unmodifiableSet(households);
+    }
+
+    /**
+     * Join existing household
+     *
+     * @param household household to join
+     */
+    public void joinHousehold(Household household) {
+        this.households.add(household);
+    }
+
+    /**
      * @return ID of this user
      */
     public Long getId() {
         return id;
     }
-
 
     /**
      * @return Email of this user
