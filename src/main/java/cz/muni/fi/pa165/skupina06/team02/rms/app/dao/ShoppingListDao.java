@@ -16,7 +16,7 @@ public interface ShoppingListDao {
      * @param id
      * @return
      */
-    public ShoppingListDao findById(Long id);
+    public ShoppingList findById(Long id);
 
     /**
      * Create Shopping list
@@ -41,5 +41,5 @@ public interface ShoppingListDao {
      * @param name
      * @return ShoppingList instance
      */
-    public ShoppingListDao findByName(String name);
+    public ShoppingList findByName(String name);
 }
