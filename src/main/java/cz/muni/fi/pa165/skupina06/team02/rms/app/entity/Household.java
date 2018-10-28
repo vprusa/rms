@@ -16,23 +16,23 @@ public class Household {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
-    String street;
+    private String street;
 
     @NotNull
     @Column(nullable = false)
-    String buildingNumber;
+    private String buildingNumber;
 
     @NotNull
     @Column(nullable = false)
-    String zipCode;
+    private String zipCode;
 
     @NotNull
     @Column(nullable = false)
-    String state;
+    private String state;
 
     /**
      * @return id

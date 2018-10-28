@@ -16,11 +16,11 @@ public class ShoppingList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
-    String name;
+    private String name;
 
     /**
      * @return id
