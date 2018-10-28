@@ -39,18 +39,11 @@ public class ShoppingList {
     }
 
     /**
-     * @param shoppingItems instance
-     */
-    public void setShoppingItems(List<ShoppingItem> shoppingItems) {
-        this.shoppingItems = shoppingItems;
-    }
-
-    /**
      * Add ShoppingItem to list
      * 
      * @param shoppingItem instance
      */
-    public void addToShoppingList(ShoppingItem shoppingItem) {
+    public void addItem(ShoppingItem shoppingItem) {
         shoppingItems.add(shoppingItem);
     }
 

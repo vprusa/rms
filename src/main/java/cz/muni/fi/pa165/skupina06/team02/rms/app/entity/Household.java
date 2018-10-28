@@ -48,19 +48,13 @@ public class Household {
         return shoppingLists;
     }
 
-    /**
-     * @param shoppingLists instance
-     */
-    public void setShoppingLists(List<ShoppingList> shoppingLists) {
-        this.shoppingLists = shoppingLists;
-    }
 
     /**
      * Adds Shopping list to list of Shopping lists of Household
      * 
      * @param shoppingList instance
      */
-    public void addShoppingList(ShoppingList shoppingList) {
+    public void addToShoppingLists(ShoppingList shoppingList) {
         shoppingLists.add(shoppingList);
     }
 
