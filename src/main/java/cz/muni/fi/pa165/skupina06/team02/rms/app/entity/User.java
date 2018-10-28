@@ -111,6 +111,13 @@ public class User {
     }
 
     /**
+     * @param email Set email for this user
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * @param firstName New first name of this user
      */
     public void setFirstName(String firstName) {
