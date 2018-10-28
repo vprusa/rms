@@ -34,7 +34,7 @@ public class User {
     @OneToMany(mappedBy = "dedicatedBuyer")
     private List<ShoppingItem> items = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "tennats")
+    @ManyToMany(mappedBy = "tenats")
     private Set<Household> households = new HashSet<>();
 
     /**
