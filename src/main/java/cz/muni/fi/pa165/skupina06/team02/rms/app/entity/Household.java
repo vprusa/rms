@@ -1,10 +1,14 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,23 +20,43 @@ public class Household {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
-    String street;
+    private String street;
 
     @NotNull
     @Column(nullable = false)
-    String buildingNumber;
+    private String buildingNumber;
 
     @NotNull
     @Column(nullable = false)
-    String zipCode;
+    private String zipCode;
 
     @NotNull
     @Column(nullable = false)
-    String state;
+    private String state;
+
+    @OneToMany
+    private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
+
+    /**
+     * @return shopping list instance
+     */
+    public List<ShoppingList> getShoppingLists() {
+        return shoppingLists;
+    }
+
+
+    /**
+     * Adds Shopping list to list of Shopping lists of Household
+     * 
+     * @param shoppingList instance
+     */
+    public void addToShoppingLists(ShoppingList shoppingList) {
+        shoppingLists.add(shoppingList);
+    }
 
     /**
      * @return id
