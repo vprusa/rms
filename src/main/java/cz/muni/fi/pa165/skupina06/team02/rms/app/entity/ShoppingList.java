@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -31,8 +33,27 @@ public class ShoppingList {
     // @JoinColumn(name="tableFK")
     private List<ShoppingItem> shoppingItems = new ArrayList<ShoppingItem>();
 
+    @ManyToOne
+    @JoinColumn()
+    private Household household;
+    
+    
     /**
-     * Dfault eConstructor
+     * @return household instance
+     */
+    public Household getHousehold() {
+        return household;
+    }
+
+    /**
+     * @param household instance
+     */
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
+
+    /**
+     * Default eConstructor
      *
      * @param id
      */
