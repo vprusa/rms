@@ -176,8 +176,8 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
     /**
      * This method is used for asserting values of found User vs expected User
      * 
-     * @param expected
-     * @param found
+     * @param expected User
+     * @param found User
      */
     private void assertUsersEquals(User expected, User found) {
         Assert.assertNotNull(found, "Found user can not be null");
