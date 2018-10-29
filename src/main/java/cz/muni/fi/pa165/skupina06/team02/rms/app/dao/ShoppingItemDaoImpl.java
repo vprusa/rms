@@ -21,7 +21,7 @@ public class ShoppingItemDaoImpl implements ShoppingItemDao {
 
     @Override
     public List<ShoppingItem> findAll() {
-        return em.createQuery("select i from ShoppingItems i", ShoppingItem.class)
+        return em.createQuery("select i from ShoppingItem i", ShoppingItem.class)
                 .getResultList();
     }
 
@@ -33,5 +33,10 @@ public class ShoppingItemDaoImpl implements ShoppingItemDao {
     @Override
     public void delete(ShoppingItem item) {
         em.remove(item);
+    }
+
+    @Override
+    public void update(ShoppingItem item) {
+        em.merge(item);
     }
 }
