@@ -123,4 +123,13 @@ public class ShoppingListDaoTest extends AbstractTestNGSpringContextTests {
         slDao.update(l);
         Assert.assertEquals(slDao.findById(l.getId()).getName(), l.getName());
     }
+
+    @Test
+    public void testDelete() {
+        ShoppingList l = makeList();
+        slDao.create(l);
+
+        slDao.delete(l);
+        Assert.assertNull(slDao.findById(l.getId()));
+    }
 }
