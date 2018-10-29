@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByEmail(String email) {
         try {
-            return em.createQuery("select u from User u where email = :email", User.class)
+            return em.createQuery("select u from Users u where email = :email", User.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NoResultException e) {
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
-        return em.createQuery("select u from User u", User.class)
+        return em.createQuery("select u from Users u", User.class)
                 .getResultList();
     }
 

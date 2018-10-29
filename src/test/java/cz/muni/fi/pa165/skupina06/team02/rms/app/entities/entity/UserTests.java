@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.skupina06.team02.rms.app.entities;
+package cz.muni.fi.pa165.skupina06.team02.rms.app.entities.entity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
