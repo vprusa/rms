@@ -10,6 +10,8 @@ import java.util.*;
  * @author Martin Lacko
  */
 @Entity
+//In Derby, its forbiden to 'USER' is reserved keyword, we need to rename table 
+@Table(name="Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

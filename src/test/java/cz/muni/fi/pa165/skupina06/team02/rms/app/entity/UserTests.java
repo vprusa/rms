@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.skupina06.team02.rms.app.entities;
+package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,14 +32,15 @@ public class UserTests extends AbstractTestNGSpringContextTests {
         user.setFirstName("TestFirstName");
         user.setLastName("TestLastName");
         user.setPassword("TestPassword");
+        user.setEmail("TestEmail");
         //user.setEmail("TestPassword");
         em.persist(user);
         em.getTransaction().commit();
         em.close();
 
-        EntityManager em2 = emf.createEntityManager();
-        em2.getTransaction().begin();
-        User user2 = em2.find(User.class, user.getId());
+        //EntityManager em2 = emf.createEntityManager();
+        //em2.getTransaction().begin();
+        //User user2 = em2.find(User.class, user.getId());
 //        assertTrue("User ID mismatch - user1: " + user.getId() + " does not match user2: " + user2.getId(), user.getId().equals(user2.getId()));
 //        assertTrue(" mismatch - user1: " + user.get + " does not match user2: " + user2.get,user.get.equals(user2.get));
 //        assertTrue("Firstname mismatch - user1: " + user.getFirstName() + " does not match user2: " + user2.getFirstName(), user.getFirstName().equals(user2.getFirstName()));
