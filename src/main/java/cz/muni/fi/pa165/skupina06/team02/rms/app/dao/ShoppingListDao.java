@@ -2,12 +2,14 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.dao;
 
 import java.util.List;
 
+import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 
 /**
  * @author Vojtech Prusa
  *
  */
+
 public interface ShoppingListDao {
 
     /**
@@ -29,6 +31,13 @@ public interface ShoppingListDao {
      * @param ShoppingList instance
      */
     public void delete(ShoppingList sl);
+    
+    /**
+     * @param Household instance
+     * @return updated ShoppingList instance
+     */
+    public ShoppingList update(ShoppingList sl);
+
 
     /**
      * @return List of all ShoppingLists
