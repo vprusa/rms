@@ -72,10 +72,10 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
      * .lang.String)
      */
     @Override
-    public ShoppingList findByName(String name) {
+    public List<ShoppingList> findByName(String name) {
         Query q = em.createQuery("select i from Household i where name = :name", ShoppingList.class);
         q.setParameter(":name", name);
-        return (ShoppingList) q.getSingleResult();
+        return q.getResultList();
     }
 
 }

@@ -41,5 +41,5 @@ public interface ShoppingListDao {
      * @param name
      * @return ShoppingList instance
      */
-    public ShoppingList findByName(String name);
+    public List<ShoppingList> findByName(String name);
 }
