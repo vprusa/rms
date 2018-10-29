@@ -16,6 +16,10 @@ import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
+
+/**
+ * @author Martin Lacko
+ */
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
@@ -26,7 +30,7 @@ public class HouseholdDaoTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private HouseholdDao hDao;
 
-    private Household makeTestHousehold() {
+    public static Household makeTestHousehold() {
         Household h = new Household();
         h.setStreet("x");
         h.setState("x");
