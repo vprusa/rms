@@ -32,7 +32,7 @@ public class UserTests extends AbstractTestNGSpringContextTests {
         user.setFirstName("TestFirstName");
         user.setLastName("TestLastName");
         user.setPassword("TestPassword");
-        //user.setEmail("TestPassword");
+        user.setEmail("TestEmail");
         em.persist(user);
         em.getTransaction().commit();
         em.close();
