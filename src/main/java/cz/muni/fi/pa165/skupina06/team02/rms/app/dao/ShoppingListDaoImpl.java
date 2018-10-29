@@ -81,4 +81,10 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
         return q.getResultList();
     }
 
+    @Override
+    public ShoppingList update(ShoppingList sl) {
+        // TODO Auto-generated method stub
+        return em.merge(sl);
+    }
+
 }

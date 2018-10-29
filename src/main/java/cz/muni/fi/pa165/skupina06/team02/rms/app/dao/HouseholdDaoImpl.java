@@ -65,4 +65,9 @@ public class HouseholdDaoImpl implements HouseholdDao {
         return em.createQuery("select i from Household i", Household.class).getResultList();
     }
 
+    @Override
+    public Household update(Household h) {
+        return em.merge(h);
+    }
+
 }

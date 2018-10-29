@@ -30,6 +30,13 @@ public interface HouseholdDao {
      * @return List of Household instances
      */
     public List<Household> findAll();
+    
+    /**
+     * @param Household instance
+     * @return updated Household instance
+     */
+    public Household update(Household h);
+
 
     /**
      * Find Household by given address
