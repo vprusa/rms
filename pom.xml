@@ -25,10 +25,10 @@
         </dependencies>
     </dependencyManagement>
     <!--<parent>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-        <!--<version>2.0.5.RELEASE</version>-->
-        <!--<relativePath/>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>2.0.5.RELEASE</version>-->
+    <!--<relativePath/>-->
     <!--</parent>-->
 
     <build>
@@ -75,6 +75,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -165,87 +170,87 @@
     </dependencies>
 
     <!--<dependencies>-->
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.testng/testng &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.testng</groupId>-->
-            <!--<artifactId>testng</artifactId>-->
-            <!--<version>6.14.3</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.testng/testng &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.testng</groupId>-->
+    <!--<artifactId>testng</artifactId>-->
+    <!--<version>6.14.3</version>-->
+    <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>junit</groupId>-->
-            <!--<artifactId>junit</artifactId>-->
-            <!--<version>4.12</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>junit</groupId>-->
+    <!--<artifactId>junit</artifactId>-->
+    <!--<version>4.12</version>-->
+    <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>javax.persistence</groupId>-->
-            <!--<artifactId>javax.persistence-api</artifactId>-->
-            <!--<version>2.2</version>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>javax.persistence</groupId>-->
+    <!--<artifactId>javax.persistence-api</artifactId>-->
+    <!--<version>2.2</version>-->
+    <!--</dependency>-->
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.validation/validation-api &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>javax.validation</groupId>-->
-            <!--<artifactId>validation-api</artifactId>-->
-            <!--<version>2.0.1.Final</version>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.validation/validation-api &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>javax.validation</groupId>-->
+    <!--<artifactId>validation-api</artifactId>-->
+    <!--<version>2.0.1.Final</version>-->
+    <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-context</artifactId>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-context</artifactId>-->
+    <!--</dependency>-->
 
-        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-            <!--&lt;!&ndash;<groupId>log4j</groupId>&ndash;&gt;-->
-            <!--&lt;!&ndash;<artifactId>log4j</artifactId>&ndash;&gt;-->
-        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+    <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+    <!--&lt;!&ndash;<groupId>log4j</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;<artifactId>log4j</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-core</artifactId>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-core</artifactId>-->
+    <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.data</groupId>-->
-            <!--<artifactId>spring-data-jpa</artifactId>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.data</groupId>-->
+    <!--<artifactId>spring-data-jpa</artifactId>-->
+    <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-test</artifactId>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-test</artifactId>-->
+    <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.mockito</groupId>-->
-            <!--<artifactId>mockito-all</artifactId>-->
-            <!--<version>2.0.2-beta</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.mockito</groupId>-->
+    <!--<artifactId>mockito-all</artifactId>-->
+    <!--<version>2.0.2-beta</version>-->
+    <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-core</artifactId>-->
-            <!--<version>5.3.7.Final</version>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.hibernate</groupId>-->
+    <!--<artifactId>hibernate-core</artifactId>-->
+    <!--<version>5.3.7.Final</version>-->
+    <!--</dependency>-->
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate.validator</groupId>-->
-            <!--<artifactId>hibernate-validator</artifactId>-->
-            <!--<version>6.0.13.Final</version>-->
-        <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.hibernate.validator</groupId>-->
+    <!--<artifactId>hibernate-validator</artifactId>-->
+    <!--<version>6.0.13.Final</version>-->
+    <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.apache.derby</groupId>-->
-            <!--<artifactId>derby</artifactId>-->
-            <!--<version>10.10.2.0</version>-->
-        <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.apache.derby</groupId>-->
+    <!--<artifactId>derby</artifactId>-->
+    <!--<version>10.10.2.0</version>-->
+    <!--</dependency>-->
     <!--</dependencies>-->
 </project>
