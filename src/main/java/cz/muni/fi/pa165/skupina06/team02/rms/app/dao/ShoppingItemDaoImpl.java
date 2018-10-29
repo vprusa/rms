@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Martin Lacko
+ */
 @Repository
 public class ShoppingItemDaoImpl implements ShoppingItemDao {
     @PersistenceContext
