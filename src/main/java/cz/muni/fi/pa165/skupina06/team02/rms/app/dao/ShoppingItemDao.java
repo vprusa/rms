@@ -12,4 +12,6 @@ public interface ShoppingItemDao {
     public void create(ShoppingItem item);
 
     public void delete(ShoppingItem item);
+
+    public void update(ShoppingItem item);
 }
