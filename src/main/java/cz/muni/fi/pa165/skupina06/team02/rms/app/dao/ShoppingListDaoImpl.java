@@ -81,6 +81,9 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
         return q.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#update(cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList)
+     */
     @Override
     public ShoppingList update(ShoppingList sl) {
         // TODO Auto-generated method stub

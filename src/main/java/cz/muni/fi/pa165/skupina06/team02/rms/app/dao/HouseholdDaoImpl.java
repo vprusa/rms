@@ -65,6 +65,9 @@ public class HouseholdDaoImpl implements HouseholdDao {
         return em.createQuery("select i from Household i", Household.class).getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.dao.HouseholdDao#update(cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
+     */
     @Override
     public Household update(Household h) {
         return em.merge(h);
