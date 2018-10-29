@@ -62,8 +62,8 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
      */
     @Override
     public List<ShoppingList> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        return em.createQuery("select sl from ShoppingList sl", ShoppingList.class)
+                .getResultList();
     }
 
     /*
@@ -75,7 +75,7 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
      */
     @Override
     public List<ShoppingList> findByName(String name) {
-        Query q = em.createQuery("select i from ShoppingList i where name = :name", ShoppingList.class);
+        Query q = em.createQuery("select sl from ShoppingList sl where name = :name", ShoppingList.class);
         q.setParameter("name", name);
         return q.getResultList();
     }
