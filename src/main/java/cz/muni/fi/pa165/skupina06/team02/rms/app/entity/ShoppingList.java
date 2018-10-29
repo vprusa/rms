@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -114,4 +115,19 @@ public class ShoppingList {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingList that = (ShoppingList) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(shoppingItems, that.shoppingItems) &&
+                Objects.equals(household, that.household);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, shoppingItems, household);
+    }
 }

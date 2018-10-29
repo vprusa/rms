@@ -1,9 +1,6 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.entity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +19,6 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Household {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -192,5 +188,24 @@ public class Household {
      */
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Household household = (Household) o;
+        return Objects.equals(id, household.id) &&
+                Objects.equals(street, household.street) &&
+                Objects.equals(buildingNumber, household.buildingNumber) &&
+                Objects.equals(zipCode, household.zipCode) &&
+                Objects.equals(state, household.state) &&
+                Objects.equals(shoppingLists, household.shoppingLists) &&
+                Objects.equals(tenants, household.tenants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, street, buildingNumber, zipCode, state, shoppingLists, tenants);
     }
 }
