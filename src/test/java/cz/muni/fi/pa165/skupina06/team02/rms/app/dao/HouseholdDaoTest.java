@@ -105,4 +105,13 @@ public class HouseholdDaoTest extends AbstractTestNGSpringContextTests {
         hDao.update(h);
         Assert.assertEquals(hDao.findById(h.getId()).getState(), h.getState());
     }
+
+    @Test
+    public void delete() {
+        Household h = makeTestHousehold();
+        hDao.create(h);
+
+        hDao.delete(h);
+        Assert.assertNull(hDao.findById(h.getId()));
+    }
 }
