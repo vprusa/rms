@@ -6,12 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 
 /**
  * @author Vojtech Prusa
  *
  */
+@Repository
 public class ShoppingListDaoImpl implements ShoppingListDao {
 
     @PersistenceContext

@@ -4,8 +4,12 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public class ShoppingItemDaoImpl implements ShoppingItemDao {
     @PersistenceContext
     private EntityManager em;
