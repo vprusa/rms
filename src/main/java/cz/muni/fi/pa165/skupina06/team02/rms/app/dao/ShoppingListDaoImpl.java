@@ -12,7 +12,6 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 
 /**
  * @author Vojtech Prusa
- *
  */
 @Repository
 public class ShoppingListDaoImpl implements ShoppingListDao {
@@ -22,7 +21,7 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#findById(java.
      * lang.Long)
@@ -34,7 +33,7 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#create(cz.muni.
      * fi.pa165.skupina06.team02.rms.app.entity.ShoppingList)
@@ -46,7 +45,7 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#delete(cz.muni.
      * fi.pa165.skupina06.team02.rms.app.entity.ShoppingList)
@@ -58,7 +57,7 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#findAll()
      */
     @Override
@@ -69,15 +68,15 @@ public class ShoppingListDaoImpl implements ShoppingListDao {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao#findByName(java
      * .lang.String)
      */
     @Override
     public List<ShoppingList> findByName(String name) {
-        Query q = em.createQuery("select i from Household i where name = :name", ShoppingList.class);
-        q.setParameter(":name", name);
+        Query q = em.createQuery("select i from ShoppingList i where name = :name", ShoppingList.class);
+        q.setParameter("name", name);
         return q.getResultList();
     }
 
