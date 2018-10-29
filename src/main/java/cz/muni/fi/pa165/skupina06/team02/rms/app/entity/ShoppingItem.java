@@ -21,6 +21,9 @@ public class ShoppingItem {
     @Column()
     private Long quantity;
 
+    @Column()
+    private Boolean bought;
+
     @ManyToOne
     @JoinColumn()
     private User dedicatedBuyer;
@@ -77,6 +80,20 @@ public class ShoppingItem {
      */
     public ShoppingList getShoppingList() {
         return shoppingList;
+    }
+
+    /**
+     * @return if this item was bought already
+     */
+    public Boolean getBought() {
+        return bought;
+    }
+
+    /**
+     * @param bought set if this item was bought
+     */
+    public void setBought(Boolean bought) {
+        this.bought = bought;
     }
 
     /**
