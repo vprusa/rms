@@ -47,15 +47,15 @@ public class Household {
     private List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
 
     @ManyToMany
-    private Set<User> tenats = new HashSet<User>();
+    private Set<User> tenants = new HashSet<User>();
 
     /**
      * Remove tenant
      * 
      * @param tenant
      */
-    public void remoteTenant(User tenant) {
-        tenats.remove(tenant);
+    public void removeTenant(User tenant) {
+        tenants.remove(tenant);
     }
 
     /**
@@ -64,7 +64,7 @@ public class Household {
      * @param tenant
      */
     public void addTenant(User tenant) {
-        tenats.add(tenant);
+        tenants.add(tenant);
         // TODO some other magic like:
         // https://github.com/fi-muni/PA165/blob/864034ae6ae116da53c34e45b92edfe3a16b346b/eshop-persistence/src/main/java/cz/fi/muni/pa165/entity/Product.java#L81
         // g.e.:
@@ -74,19 +74,19 @@ public class Household {
     /**
      * Getter
      * 
-     * @return tenats instacne
+     * @return tenants instacne
      */
-    public Set<User> getTenats() {
-        return tenats;
+    public Set<User> getTenants() {
+        return tenants;
     }
 
     /**
      * Setter
      * 
-     * @param tenats the tenats to set
+     * @param tenants the tenants to set
      */
-    public void settenats(Set<User> tenats) {
-        this.tenats = tenats;
+    public void setTenants(Set<User> tenants) {
+        this.tenants = tenants;
     }
 
     /**

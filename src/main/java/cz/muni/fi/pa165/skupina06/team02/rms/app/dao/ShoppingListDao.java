@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.dao;
 
 import java.util.List;
 
-import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 
 /**
