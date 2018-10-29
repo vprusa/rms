@@ -55,40 +55,57 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         }
     }
 
+    /**
+     * Tests raise of ConstraintViolationException exception when Email is null
+     */
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void nullEmailNotAllowed() {
         users[0].setEmail(null);
         userDao.create(users[0]);
     }
 
+    /**
+     * Tests raise of ConstraintViolationException exception when FirstName is null
+     */
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void nullFirstNameNotAllowed() {
         users[0].setFirstName(null);
         userDao.create(users[0]);
     }
 
+    /**
+     * Tests raise of ConstraintViolationException exception when LastName is null
+     */
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void nullLastNameNotAllowed() {
         users[0].setLastName(null);
         userDao.create(users[0]);
     }
 
+    /**
+     * Tests raise of ConstraintViolationException exception when Password is null
+     */
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void nullPasswordNotAllowed() {
         users[0].setPassword(null);
         userDao.create(users[0]);
     }
 
+    /**
+     * Tests findById method
+     */
     @Test
-    public User findById() {
+    public void findById() {
         for (int i = 0; i < USERS_COUNT; i++) {
             userDao.create(users[i]);
             User found = userDao.findById(users[i].getId());
             assertUsersEquals(users[i], found);
         }
-        return null;
     }
 
+    /**
+     * Tests findByEmail method
+     */
     @Test
     public void findByEmail() {
         for (int i = 0; i < USERS_COUNT; i++) {
@@ -99,7 +116,10 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         }
     }
 
-   // @Test
+    /**
+     * Tests findAll method
+     */
+    @Test
     public void findAll() {
         for (int i = 0; i < USERS_COUNT; i++) {
             userDao.create(users[i]);
@@ -108,6 +128,9 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(foundUsers.size(), USERS_COUNT);
     }
 
+    /**
+     * Tests create method
+     */
     @Test
     public void create() {
         userDao.create(users[0]);
@@ -116,6 +139,9 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         assertUsersEquals(expceted, found);
     }
 
+    /**
+     * Tests delete method
+     */
     @Test
     public void delete() {
         User tested = users[0];
@@ -126,6 +152,9 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         Assert.assertNull(notFound, "Found user should have been null");
     }
 
+    /**
+     * Tests update method
+     */
     @Test
     public void update() {
         int usedUsers = USERS_COUNT; // or 1
@@ -144,6 +173,12 @@ public class UserDaoTests extends AbstractTestNGSpringContextTests {
         }
     }
 
+    /**
+     * This method is used for asserting values of found User vs expected User
+     * 
+     * @param expected
+     * @param found
+     */
     private void assertUsersEquals(User expected, User found) {
         Assert.assertNotNull(found, "Found user can not be null");
         Assert.assertEquals(expected.getId(), found.getId());
