@@ -148,13 +148,11 @@ public class User {
                 Objects.equals(email, user.email) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(items, user.items) &&
-                Objects.equals(households, user.households);
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, password, items, households);
+        return Objects.hash(id, email, firstName, lastName, password);
     }
 }

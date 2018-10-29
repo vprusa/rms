@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author Vojtech Prusa
- *
  */
 @Entity
 public class ShoppingList {
@@ -37,8 +36,8 @@ public class ShoppingList {
     @ManyToOne
     @JoinColumn()
     private Household household;
-    
-    
+
+
     /**
      * @return household instance
      */
@@ -80,7 +79,7 @@ public class ShoppingList {
 
     /**
      * Add ShoppingItem to list
-     * 
+     *
      * @param shoppingItem instance
      */
     public void addItem(ShoppingItem shoppingItem) {
@@ -121,13 +120,12 @@ public class ShoppingList {
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingList that = (ShoppingList) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(shoppingItems, that.shoppingItems) &&
-                Objects.equals(household, that.household);
+                Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shoppingItems, household);
+        return Objects.hash(id, name);
     }
 }
+

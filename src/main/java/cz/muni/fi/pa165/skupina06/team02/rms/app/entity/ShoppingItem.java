@@ -133,13 +133,11 @@ public class ShoppingItem {
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(quantity, that.quantity) &&
-                Objects.equals(bought, that.bought) &&
-                Objects.equals(dedicatedBuyer, that.dedicatedBuyer) &&
-                Objects.equals(shoppingList, that.shoppingList);
+                Objects.equals(bought, that.bought);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity, bought, dedicatedBuyer, shoppingList);
+        return Objects.hash(id, name, quantity, bought);
     }
 }

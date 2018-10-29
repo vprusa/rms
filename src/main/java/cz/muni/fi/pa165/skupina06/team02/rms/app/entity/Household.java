@@ -199,13 +199,11 @@ public class Household {
                 Objects.equals(street, household.street) &&
                 Objects.equals(buildingNumber, household.buildingNumber) &&
                 Objects.equals(zipCode, household.zipCode) &&
-                Objects.equals(state, household.state) &&
-                Objects.equals(shoppingLists, household.shoppingLists) &&
-                Objects.equals(tenants, household.tenants);
+                Objects.equals(state, household.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, street, buildingNumber, zipCode, state, shoppingLists, tenants);
+        return Objects.hash(id, street, buildingNumber, zipCode, state);
     }
 }
