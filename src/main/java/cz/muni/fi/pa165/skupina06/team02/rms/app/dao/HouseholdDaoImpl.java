@@ -5,12 +5,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 
 /**
  * @author Vojtech Prusa
  *
  */
+@Repository
 public class HouseholdDaoImpl implements HouseholdDao {
 
     @PersistenceContext
