@@ -6,7 +6,7 @@
     
     <parent>
         <groupId>cz.muni.fi.pa165.skupina06.team02.rms</groupId>
-        <artifactId>eshop-rms</artifactId>
+        <artifactId>rms-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>rms-services-and-facades</artifactId>
