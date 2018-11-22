@@ -25,8 +25,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
+//@ComponentScan(basePackageClasses = {UserDao.class, HouseholdDao.class, ShoppingItemDao.class, ShoppingListDao.class},
+//        basePackages = "cz.muni.fi.pa165.skupina06.team02.rms.app")
 @ComponentScan(basePackageClasses = {UserDao.class, HouseholdDao.class, ShoppingItemDao.class, ShoppingListDao.class},
-        basePackages = "cz.muni.fi.pa165.skupina06.team02.rms.app")
+basePackages = "cz.muni.fi.pa165.skupina06.team02.rms.app")
 public class PersistenceSampleApplicationContext {
 
     /**
