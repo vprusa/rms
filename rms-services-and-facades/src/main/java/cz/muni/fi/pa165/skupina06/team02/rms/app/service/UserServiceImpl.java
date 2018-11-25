@@ -52,17 +52,6 @@ public class UserServiceImpl implements UserService {
         return validatePassword(password, u.getPassword());
     }
 
-    /* (non-Javadoc)
-     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.service.UserService#isLessee(cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User)
-     */
-    @Override
-    public boolean isLessee(User u) {
-        // must get a fresh copy from database
-        //return findById(u.getId()).isLessee();
-        // TODO idk how to use UserType yet
-        return false;
-    }
-
     @Override
     public User findById(Long userId) {
         return userDao.findById(userId);

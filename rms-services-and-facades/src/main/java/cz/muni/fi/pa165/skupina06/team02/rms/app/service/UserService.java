@@ -43,14 +43,6 @@ public interface UserService {
     boolean authenticate(User u, String password);
 
     /**
-     * Check if the given user is lessee.
-     *
-     * @param u
-     * @return
-     */
-    boolean isLessee(User u);
-
-    /**
      * Finds user by its id
      * 
      * @param userId value
