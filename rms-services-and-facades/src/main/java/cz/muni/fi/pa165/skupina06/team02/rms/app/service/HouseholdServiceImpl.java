@@ -151,18 +151,4 @@ public class HouseholdServiceImpl implements HouseholdService {
         household.addTenant(tenant);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.service.HouseholdService#
-     * addToShoppingLists(cz.muni.fi.pa165.skupina06.team02.rms.app.entity.
-     * ShoppingList, cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
-     */
-    @Override
-    public void addToShoppingLists(ShoppingList shoppingList, Household household) {
-        // TODO check please
-        shoppingList.setHousehold(household);
-        household.addToShoppingLists(shoppingList);
-    }
-
 }
