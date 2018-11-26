@@ -74,20 +74,6 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      * (non-Javadoc)
      * 
      * @see cz.muni.fi.pa165.skupina06.team02.rms.app.facade.HouseholdFacade#
-     * getHouseholdsByUser(cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO)
-     */
-    /*
-     * @Override public List<HouseholdDTO> getHouseholdsByUser(UserDTO user) {
-     * List<Household> houseolds =
-     * householdService.getHouseholdsByUser(beanMappingService.mapTo(user,
-     * User.class));- return beanMappingService.mapTo(houseolds,
-     * HouseholdDTO.class); }
-     */
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.facade.HouseholdFacade#
      * updateHousehold(cz.muni.fi.pa165.skupina06.team02.rms.app.dto.HouseholdDTO)
      */
     @Override
