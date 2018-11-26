@@ -24,8 +24,13 @@ public class ShoppingItemServiceImpl implements ShoppingItemService {
     private UserDao userDao;
 
     @Override
-    public void createShoppingItem(ShoppingItem item) {
+    public ShoppingItem createShoppingItem(ShoppingItem item) {
+        ShoppingList list = item.getShoppingList();
+        if (list != null) {
+            list.addItem(item);
+        }
         shoppingItemDao.create(item);
+        return item;
     }
 
     @Override
