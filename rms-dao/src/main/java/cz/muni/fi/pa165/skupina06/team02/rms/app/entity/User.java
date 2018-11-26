@@ -75,6 +75,15 @@ public class User {
     public void joinHousehold(Household household) {
         this.households.add(household);
     }
+    
+    /**
+     * Leave existing household
+     *
+     * @param household household to leave
+     */
+    public void leaveHousehold(Household household) {
+        this.households.remove(household);
+    }
 
     /**
      * @return ID of this user
