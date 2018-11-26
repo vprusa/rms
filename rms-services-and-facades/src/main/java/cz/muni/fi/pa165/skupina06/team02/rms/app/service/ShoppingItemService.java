@@ -15,7 +15,7 @@ public interface ShoppingItemService {
      *
      * @param item Item to create
      */
-    void createShoppingItem(ShoppingItem item);
+    ShoppingItem createShoppingItem(ShoppingItem item);
 
     /**
      * Find shopping item by its ID

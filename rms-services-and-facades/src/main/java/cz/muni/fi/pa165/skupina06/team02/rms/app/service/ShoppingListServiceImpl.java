@@ -4,12 +4,13 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.HouseholdDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingItemDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class ShoppingListImpl implements ShoppingListService {
+public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     ShoppingListDao shoppingListDao;
 
@@ -20,8 +21,16 @@ public class ShoppingListImpl implements ShoppingListService {
     HouseholdDao householdDao;
 
     @Override
-    public void createShoppingList(ShoppingList shoppingList) {
+    public ShoppingList createShoppingList(ShoppingList shoppingList) {
+        List<ShoppingItem> list = shoppingList.getShoppingItems();
+        if (list != null) {
+            for (ShoppingItem item : list) {
+                shoppingItemDao.create(item);
+            }
+        }
+
         shoppingListDao.create(shoppingList);
+        return shoppingList;
     }
 
     @Override

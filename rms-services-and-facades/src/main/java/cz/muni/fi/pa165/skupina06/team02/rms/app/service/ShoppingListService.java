@@ -14,7 +14,7 @@ public interface ShoppingListService {
      *
      * @param shoppingList list to create
      */
-    void createShoppingList(ShoppingList shoppingList);
+    ShoppingList createShoppingList(ShoppingList shoppingList);
 
     /**
      * Find shopping list by its ID
