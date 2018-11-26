@@ -8,10 +8,7 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.service.HouseholdServiceImpl;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.service.ShoppingItemServiceImpl;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.service.ShoppingListServiceImpl;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.service.UserServiceImpl;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.service.*;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -23,7 +20,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
 @ComponentScan(basePackageClasses = {HouseholdServiceImpl.class, ShoppingItemServiceImpl.class,
-        ShoppingListServiceImpl.class, UserServiceImpl.class})
+        ShoppingListServiceImpl.class, UserServiceImpl.class, BeanMappingServiceImpl.class})
 public class ServiceConfiguration {
     @Bean
     public Mapper dozer() {
