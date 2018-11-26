@@ -79,11 +79,11 @@ public class HouseholdServiceTest {
         Assert.assertTrue(h.get(0).getId().equals(1L));
     }
 
-    @Test
-    public void testRemoveTenant() {
-        householdService.removeTenant(tenant1, household);
-        Assert.assertEquals(household.getTenants().size(), 0);
-    }
+//    @Test
+//    public void testRemoveTenant() {
+//        householdService.removeTenant(tenant1, household);
+//        Assert.assertEquals(household.getTenants().size(), 0);
+//    }
 
     @Test
     public void testAddTenant() {
