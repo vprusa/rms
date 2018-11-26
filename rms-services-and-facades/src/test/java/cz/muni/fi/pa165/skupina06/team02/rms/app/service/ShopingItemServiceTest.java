@@ -48,6 +48,7 @@ public class ShopingItemServiceTest {
     }
 
     private ShoppingItem shoppingItem;
+    private ShoppingItem shoppingItem2;
     private ShoppingList shoppingList;
     private User user;
 
@@ -69,12 +70,24 @@ public class ShopingItemServiceTest {
         shoppingItem.setQuantity((long) 15);
         shoppingItem.setShoppingList(shoppingList);
         shoppingList.addItem(shoppingItem);
+
+        shoppingItem2 = new ShoppingItem(2L);
+        shoppingItem2.setBought(false);
+        shoppingItem2.setName("test2");
+        shoppingItem2.setDedicatedBuyer(user);
+        shoppingItem2.setQuantity((long) 16);
+        shoppingItem2.setShoppingList(shoppingList);
+        shoppingList.addItem(shoppingItem);
     }
 
     public void assertMatch(ShoppingItem shoppingItemI) {
-        Assert.assertTrue(shoppingItemI.getId().equals(1L));
-        Assert.assertEquals(shoppingItemI.getName(), "test");
-        Assert.assertTrue(shoppingItemI.getQuantity() == 15L);
+        assertMatch(shoppingItemI, false);
+    }
+
+    public void assertMatch(ShoppingItem shoppingItemI, boolean second) {
+        Assert.assertTrue(shoppingItemI.getId().equals((second ? 2L : 1L)));
+        Assert.assertEquals(shoppingItemI.getName(), (second ? "test2" : "test"));
+        Assert.assertTrue(shoppingItemI.getQuantity() == (15L + (second ? 1L : 0L)));
         Assert.assertFalse(shoppingItemI.getBought());
         Assert.assertEquals(shoppingItemI.getDedicatedBuyer(), user);
         Assert.assertEquals(shoppingItemI.getShoppingList(), shoppingList);
@@ -104,9 +117,15 @@ public class ShopingItemServiceTest {
         when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
         when(userDao.findById(1L)).thenReturn(user);
         List<ShoppingItem> shoppingItems = shoppingItemService.getShoppingItemByUser(user);
-        // No users
+
+        when(userDao.findById(1L)).thenReturn(user);
+        shoppingItemDao.create(shoppingItem);
+        userDao.create(user);
         Assert.assertEquals(shoppingItems.size(), 0);
-        //assertMatch(shoppingItems.get(0));
+
+        // not possible - this is handled on Facade level
+        // Assert.assertEquals(shoppingItems.size(), 1);
+        // assertMatch(shoppingItems.get(0));
     }
 
     /**
@@ -121,7 +140,7 @@ public class ShopingItemServiceTest {
         when(shoppingListDao.findById(1L)).thenReturn(shoppingList);
         when(userDao.findById(1L)).thenReturn(user);
         List<ShoppingItem> shoppingItems = shoppingItemService.getItemsFromShoppingList(shoppingList);
-        Assert.assertEquals(shoppingItems.size(), 1);
+        Assert.assertEquals(shoppingItems.size(), 2);
         assertMatch(shoppingItems.get(0));
     }
 
@@ -144,7 +163,10 @@ public class ShopingItemServiceTest {
      */
     @Test
     public void setDedicatedBuyer() {
-            
+        shoppingItem.setDedicatedBuyer(null);
+        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+        shoppingItemService.setDedicatedBuyer(shoppingItem, user);
+        assertMatch(shoppingItem);
     }
 
     /**
@@ -154,14 +176,27 @@ public class ShopingItemServiceTest {
      */
     @Test
     public void updateShoppingItem() {
-      
+        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+        shoppingItem.setQuantity(16L);
+        shoppingItem.setName("test2");
+        shoppingItemService.setDedicatedBuyer(shoppingItem, user);
+        ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(shoppingItem.getId());
+        Assert.assertTrue(shoppingItem2.getId().equals(1L));
+        Assert.assertEquals(shoppingItem2.getName(), "test2");
+        Assert.assertTrue(shoppingItem2.getQuantity() == 16L);
     }
 
     /**
      * param shoppingItem Shopping item to delete
      */
+    @Test
     public void deleteShoppingItem() {
-
+        // can not user argument 
+        //when(shoppingItemDao.delete(argThat(shoppingItem))).thenReturn(shoppingItem);
+        //when(shoppingItemDao.delete(new ShoppingItem(1L)));
+        //shoppingItemService.deleteShoppingItem(shoppingItem);
+        //ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(shoppingItem.getId());
+        //Assert.assertNull(shoppingItem2);
     }
 
     /**
