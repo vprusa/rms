@@ -1,11 +1,6 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.service;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,7 +61,7 @@ public class HouseholdServiceImpl implements HouseholdService {
      * findAllHouseholds()
      */
     @Override
-    public List<Household> findAllHouseholds() {
+    public List<Household> findAll() {
         return householdDao.findAll();
     }
 

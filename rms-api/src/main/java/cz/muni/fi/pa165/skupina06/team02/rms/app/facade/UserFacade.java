@@ -53,14 +53,4 @@ public interface UserFacade {
 	 */
 	boolean authenticate(UserAuthenticateDTO u);
 
-	/**
-	 * Check if the given user is Lessee.
-     *
-     * TODO remove?
-     *
-	 * @param UserDTO instance
-	 * @return boolean true if Lessee 
-	 */
-	boolean isLessee(UserDTO u);
-
 }

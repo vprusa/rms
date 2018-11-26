@@ -42,7 +42,7 @@ public interface HouseholdService {
      * 
      * @return list of all households
      */
-    List<Household> findAllHouseholds();
+    List<Household> findAll();
 
     /**
      * Update values
