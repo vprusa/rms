@@ -80,14 +80,4 @@ public interface HouseholdService {
      */
     void addTenant(User tenant, Household household);
 
-    /**
-     * Adds Shopping list to list of Shopping lists of Household
-     * 
-     * @param shoppingList instance
-     */
-    void addToShoppingLists(ShoppingList shoppingList, Household household);
-
-
-
-
 }
