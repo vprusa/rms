@@ -82,6 +82,8 @@ public class ShopingListServiceTest {
         shoppingItem.setQuantity((long) 15);
         shoppingItem.setShoppingList(shoppingList);
         household.addToShoppingLists(shoppingList);
+        
+        shoppingList = new ShoppingList(1L);
         shoppingList.addItem(shoppingItem);
         shoppingList.setHousehold(household);
     }
@@ -168,13 +170,6 @@ public class ShopingListServiceTest {
     @Test
     public void updateShoppingItem() {
       
-    }
-
-    /**
-     * param shoppingItem Shopping item to delete
-     */
-    public void deleteShoppingItem() {
-
     }
 
     /**
