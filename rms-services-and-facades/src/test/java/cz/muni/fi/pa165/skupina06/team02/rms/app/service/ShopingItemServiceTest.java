@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.service;
 
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingItemDao;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.UserDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
@@ -24,17 +25,22 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class ShopingItemServiceTest {
     @Mock
-    private ShoppingItemDao userDao;
+    private ShoppingItemDao shoppingItemDao;
+
+    @Mock
+    private UserDao userDao;
+
+    @Mock
+    private ShoppingListDao shoppingListDao;
 
     @InjectMocks
     private ShoppingItemService shoppingItemService = new ShoppingItemServiceImpl();
-    
-    @InjectMocks
-    private ShoppingListService shoppingListService = new ShoppingItemServiceImpl();
 
     @InjectMocks
-    private UserService userService = new ShoppingItemServiceImpl();
+    private ShoppingListService shoppingListService = new ShoppingListServiceImpl();
 
+    @InjectMocks
+    private UserService userService = new UserServiceImpl();
 
     @BeforeClass
     public void setUpClass() throws ServiceException {
@@ -42,12 +48,27 @@ public class ShopingItemServiceTest {
     }
 
     private ShoppingItem shoppingItem;
+    private ShoppingList shoppingList;
+    private User user;
 
     @BeforeMethod
     public void setUp() {
+        user = new User(1L);
+        user.setEmail("user@user.com");
+        user.setFirstName("Us");
+        user.setLastName("Er");
+        user.setPassword("pwd");
+
+        shoppingList = new ShoppingList(1L);
+        shoppingList.setName("ShoppingListTest");
+
         shoppingItem = new ShoppingItem(1L);
         shoppingItem.setBought(false);
-        shoppingItem.setset
+        shoppingItem.setName("test");
+        shoppingItem.setDedicatedBuyer(user);
+        shoppingItem.setQuantity((long) 15);
+        shoppingItem.setShoppingList(shoppingList);
+
     }
 
     @Test
@@ -80,61 +101,68 @@ public class ShopingItemServiceTest {
         Assert.assertEquals(users.getPassword(), "pwd");
     }
     
-    /**
-     * Test: Create new shopping item
-     *
-     * param item Item to create
-     */
-    void createShoppingItem(ShoppingItem item){
-        
+    public void assertMatch(ShoppingItem shoppingItemI) {
+        Assert.assertTrue(shoppingItemI.getId().equals(1L));
+        Assert.assertEquals(shoppingItemI.getName(), "test");
+        Assert.assertTrue(shoppingItemI.getQuantity() == 15L);
+        Assert.assertFalse(shoppingItemI.getBought());
+        Assert.assertEquals(shoppingItemI.getDedicatedBuyer(), user);
+        Assert.assertEquals(shoppingItemI.getShoppingList(), shoppingList);
     }
 
     /**
-     *Test: Find shopping item by its ID
+     * Test: Find shopping item by its ID
      *
-     * param id ID of the shopping item to find
-     * return item with matching ID, null if such item does not exists
+     * param id ID of the shopping item to find return item with matching ID, null
+     * if such item does not exists
      */
-    void findShoppingItemById(Long id){
-        
+    @Test
+    public void findShoppingItemById() {
+        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+        ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(1L);
+        assertMatch(shoppingItem2);
     }
 
     /**
      * Test: Find shopping items by dedicated buyer
      *
-     * param user dedicated buyer
-     * return list of items which should dedicated buyer buy
+     * param user dedicated buyer return list of items which should dedicated buyer
+     * buy
      */
-    void getShoppingItemByUser(User user){
-        
+    @Test
+    public void getShoppingItemByUser(User user) {
+        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+        ShoppingItem shoppingItem = shoppingItemService.findShoppingItemById(1L);
     }
 
     /**
      * Test: Find all items on shopping list
      *
-     * param shoppingList shopping list with items
-     * return list of item on given shopping list
+     * param shoppingList shopping list with items return list of item on given
+     * shopping list
      */
-    void getItemsFromShoppingList(ShoppingList shoppingList){
-        
+    @Test
+    public void getItemsFromShoppingList(ShoppingList shoppingList) {
+
     }
 
     /**
-     * Test: 
-     * return list of all item in database
+     * Test: return list of all item in database
      */
-    void findAllShoppingItems(){
-        
+    @Test
+    public void findAllShoppingItems() {
+
     }
 
     /**
      * Test: Set buyer for and shopping item
      *
-     * param shoppingItem Shopping item to set the buyer
-     * param user         dedicated buyer for item
+     * param shoppingItem Shopping item to set the buyer param user dedicated buyer
+     * for item
      */
-    void setDedicatedBuyer(ShoppingItem shoppingItem, User user){
-        
+    @Test
+    public void setDedicatedBuyer(ShoppingItem shoppingItem, User user) {
+
     }
 
     /**
@@ -142,24 +170,27 @@ public class ShopingItemServiceTest {
      *
      * param shoppingItem instance to update
      */
-    void updateShoppingItem(ShoppingItem shoppingItem){
-        
+    @Test
+    public void updateShoppingItem(ShoppingItem shoppingItem) {
+
     }
 
     /**
      * param shoppingItem Shopping item to delete
      */
-    void deleteShoppingItem(ShoppingItem shoppingItem){
-        
+    public void deleteShoppingItem(ShoppingItem shoppingItem) {
+
     }
 
     /**
-     * Test:  Add item to the specific shopping list
+     * Test: Add item to the specific shopping list
      * <p>
-     * If shopping item has already set the shopping list, InvalidArgumentException is thrown.
+     * If shopping item has already set the shopping list, InvalidArgumentException
+     * is thrown.
      */
-    void addItemToShoppingList(ShoppingItem shoppingItem, ShoppingList shoppingList){
-        
+    @Test
+    public void addItemToShoppingList(ShoppingItem shoppingItem, ShoppingList shoppingList) {
+
     }
 
     /**
@@ -167,10 +198,11 @@ public class ShopingItemServiceTest {
      * <p>
      * Moves item to list, without checking, if list is not already set.
      *
-     * param shoppingItem item to move
-     * param shoppingList shoppinglist to move the item
+     * param shoppingItem item to move param shoppingList shoppinglist to move the
+     * item
      */
-    void moveItemToShoppingList(ShoppingItem shoppingItem, ShoppingList shoppingList){
-        
+    @Test
+    public void moveItemToShoppingList(ShoppingItem shoppingItem, ShoppingList shoppingList) {
+
     }
 }
