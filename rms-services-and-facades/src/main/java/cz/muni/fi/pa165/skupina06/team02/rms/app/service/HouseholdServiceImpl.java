@@ -122,13 +122,8 @@ public class HouseholdServiceImpl implements HouseholdService {
      * cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
      */
     @Override
-    public void removeTenant(User tenant, Household household) {
-        tenant.getHouseholds();
-        // do the magic here with household lists and check i manually or better via db
-        // query?
-        // householdDao.
-        // userDao.
-        // TODO check out addTenant(...), any missing method?
+    public void removeTenant(Long tenantId, Long housheoldId) {
+        userDao.findById(tenantId).leaveHousehold(householdDao.findById(housheoldId));
     }
 
     /*
@@ -140,10 +135,8 @@ public class HouseholdServiceImpl implements HouseholdService {
      * cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
      */
     @Override
-    public void addTenant(User tenant, Household household) {
-        // TODO idk like this?
-        tenant.joinHousehold(household);
-        household.addTenant(tenant);
+    public void addTenant(Long tenantId, Long housheoldId) {
+        userDao.findById(tenantId).joinHousehold(householdDao.findById(housheoldId));
     }
 
 }

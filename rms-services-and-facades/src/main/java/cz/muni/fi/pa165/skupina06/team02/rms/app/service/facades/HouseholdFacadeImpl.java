@@ -77,11 +77,12 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      * getHouseholdsByUser(cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO)
      */
     /*
-    @Override
-    public List<HouseholdDTO> getHouseholdsByUser(UserDTO user) {
-        List<Household> houseolds =  householdService.getHouseholdsByUser(beanMappingService.mapTo(user, User.class));-
-        return beanMappingService.mapTo(houseolds, HouseholdDTO.class);
-    }*/
+     * @Override public List<HouseholdDTO> getHouseholdsByUser(UserDTO user) {
+     * List<Household> houseolds =
+     * householdService.getHouseholdsByUser(beanMappingService.mapTo(user,
+     * User.class));- return beanMappingService.mapTo(houseolds,
+     * HouseholdDTO.class); }
+     */
 
     /*
      * (non-Javadoc)
@@ -115,8 +116,7 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      */
     @Override
     public void removeTenant(UserDTO tenant, HouseholdDTO household) {
-        householdService.removeTenant(beanMappingService.mapTo(tenant, User.class),
-                beanMappingService.mapTo(household, Household.class));
+        householdService.removeTenant(tenant.getId(), household.getId());
     }
 
     /*
@@ -129,7 +129,6 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      */
     @Override
     public void addTenant(UserDTO tenant, HouseholdDTO household) {
-        householdService.addTenant(beanMappingService.mapTo(tenant, User.class),
-                beanMappingService.mapTo(household, Household.class));
+        householdService.addTenant(tenant.getId(), household.getId());
     }
 }
