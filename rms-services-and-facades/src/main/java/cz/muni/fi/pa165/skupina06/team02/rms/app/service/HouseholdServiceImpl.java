@@ -1,11 +1,6 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.service;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,7 +61,7 @@ public class HouseholdServiceImpl implements HouseholdService {
      * findAllHouseholds()
      */
     @Override
-    public List<Household> findAllHouseholds() {
+    public List<Household> findAll() {
         return householdDao.findAll();
     }
 
@@ -149,20 +144,6 @@ public class HouseholdServiceImpl implements HouseholdService {
         // TODO idk like this?
         tenant.joinHousehold(household);
         household.addTenant(tenant);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see cz.muni.fi.pa165.skupina06.team02.rms.app.service.HouseholdService#
-     * addToShoppingLists(cz.muni.fi.pa165.skupina06.team02.rms.app.entity.
-     * ShoppingList, cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
-     */
-    @Override
-    public void addToShoppingLists(ShoppingList shoppingList, Household household) {
-        // TODO check please
-        shoppingList.setHousehold(household);
-        household.addToShoppingLists(shoppingList);
     }
 
 }

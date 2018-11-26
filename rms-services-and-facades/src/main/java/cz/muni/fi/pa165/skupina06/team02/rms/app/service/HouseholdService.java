@@ -42,7 +42,7 @@ public interface HouseholdService {
      * 
      * @return list of all households
      */
-    List<Household> findAllHouseholds();
+    List<Household> findAll();
 
     /**
      * Update values
@@ -79,15 +79,5 @@ public interface HouseholdService {
      * @param tenant
      */
     void addTenant(User tenant, Household household);
-
-    /**
-     * Adds Shopping list to list of Shopping lists of Household
-     * 
-     * @param shoppingList instance
-     */
-    void addToShoppingLists(ShoppingList shoppingList, Household household);
-
-
-
 
 }
