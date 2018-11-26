@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -77,15 +75,6 @@ public class Household {
     }
 
     /**
-     * Setter
-     * 
-     * @param tenants the tenants to set
-     */
-    public void setTenants(Set<User> tenants) {
-        this.tenants = tenants;
-    }
-
-    /**
      * Default Constructor
      *
      * @param id
@@ -127,12 +116,6 @@ public class Household {
         return id;
     }
 
-    /**
-     * @param id value
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * @return street
