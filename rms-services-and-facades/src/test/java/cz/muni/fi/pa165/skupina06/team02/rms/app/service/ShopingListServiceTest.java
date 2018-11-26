@@ -69,31 +69,30 @@ public class ShopingListServiceTest {
         user.setPassword("pwd");
         
         household = new Household(1L);
-        user.setEmail("user@user.com");
-        user.setFirstName("Us");
-        user.setLastName("Er");
-        user.setPassword("pwd");
+        household.addTenant(user);
+        household.setBuildingNumber("1");
+        household.setState("state");
+        household.setStreet("street");
+        household.setZipCode("zipCode");
         
-        shoppingList = new ShoppingList(1L);
-        shoppingList.setName("ShoppingListTest");
-
         shoppingItem = new ShoppingItem(1L);
         shoppingItem.setBought(false);
         shoppingItem.setName("test");
         shoppingItem.setDedicatedBuyer(user);
         shoppingItem.setQuantity((long) 15);
         shoppingItem.setShoppingList(shoppingList);
+        household.addToShoppingLists(shoppingList);
+        
+        shoppingList = new ShoppingList(1L);
         shoppingList.addItem(shoppingItem);
         shoppingList.setHousehold(household);
     }
 
-    public void assertMatch(ShoppingItem shoppingItemI) {
-        Assert.assertTrue(shoppingItemI.getId().equals(1L));
-        Assert.assertEquals(shoppingItemI.getName(), "test");
-        Assert.assertTrue(shoppingItemI.getQuantity() == 15L);
-        Assert.assertFalse(shoppingItemI.getBought());
-        Assert.assertEquals(shoppingItemI.getDedicatedBuyer(), user);
-        Assert.assertEquals(shoppingItemI.getShoppingList(), shoppingList);
+    public void assertMatch(ShoppingList shoppingListI) {
+        Assert.assertTrue(shoppingListI.getId().equals(1L));
+        Assert.assertEquals(shoppingListI.getName(), "test");
+        Assert.assertEquals(shoppingListI.getHousehold(), household);
+        Assert.assertEquals(shoppingListI.getShoppingItems(), shoppingListI);
     }
 
     /**
@@ -103,10 +102,10 @@ public class ShopingListServiceTest {
      * if such item does not exists
      */
     @Test
-    public void findShoppingItemById() {
-        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
-        ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(1L);
-        assertMatch(shoppingItem2);
+    public void findHouseholdItemById() {
+     /*   when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+        Household householdI = householdService.findShoppingItemById(1L);
+        assertMatch(shoppingItem2);*/
     }
 
     /**
@@ -117,12 +116,12 @@ public class ShopingListServiceTest {
      */
     @Test
     public void getShoppingItemByUser() {
-        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+       /* when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
         when(userDao.findById(1L)).thenReturn(user);
         List<ShoppingItem> shoppingItems = shoppingItemService.getShoppingItemByUser(user);
         // No users
         Assert.assertEquals(shoppingItems.size(), 0);
-        //assertMatch(shoppingItems.get(0));
+        //assertMatch(shoppingItems.get(0));*/
     }
 
     /**
@@ -133,12 +132,12 @@ public class ShopingListServiceTest {
      */
     @Test
     public void getItemsFromShoppingList() {
-        when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
-        when(shoppingListDao.findById(1L)).thenReturn(shoppingList);
+        /*when(shoppingItemDao.findById(1L)).thenReturn(shoppingItem);
+       when(shoppingListDao.findById(1L)).thenReturn(shoppingList);
         when(userDao.findById(1L)).thenReturn(user);
         List<ShoppingItem> shoppingItems = shoppingItemService.getItemsFromShoppingList(shoppingList);
         Assert.assertEquals(shoppingItems.size(), 1);
-        assertMatch(shoppingItems.get(0));
+        assertMatch(shoppingItems.get(0));*/
     }
 
     /**
@@ -146,10 +145,10 @@ public class ShopingListServiceTest {
      */
     @Test
     public void findAllShoppingItems() {
-        when(shoppingItemDao.findAll()).thenReturn(Collections.singletonList(shoppingItem));
+        /*when(shoppingItemDao.findAll()).thenReturn(Collections.singletonList(shoppingItem));
         List<ShoppingItem> shoppingItems = shoppingItemService.findAllShoppingItems();
         Assert.assertEquals(shoppingItems.size(), 1);
-        assertMatch(shoppingItems.get(0));
+        assertMatch(shoppingItems.get(0));*/
     }
 
     /**
@@ -171,13 +170,6 @@ public class ShopingListServiceTest {
     @Test
     public void updateShoppingItem() {
       
-    }
-
-    /**
-     * param shoppingItem Shopping item to delete
-     */
-    public void deleteShoppingItem() {
-
     }
 
     /**
