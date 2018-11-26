@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.service;
 
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.HouseholdDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingItemDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.ShoppingListDao;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dao.UserDao;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User;
@@ -23,7 +25,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class ShopingItemServiceTest {
+public class ShopingListServiceTest {
     @Mock
     private ShoppingItemDao shoppingItemDao;
 
@@ -33,12 +35,18 @@ public class ShopingItemServiceTest {
     @Mock
     private ShoppingListDao shoppingListDao;
 
+    @Mock
+    private HouseholdDao householdListDao;
+    
     @InjectMocks
     private ShoppingItemService shoppingItemService = new ShoppingItemServiceImpl();
 
     @InjectMocks
     private ShoppingListService shoppingListService = new ShoppingListServiceImpl();
 
+    @InjectMocks
+    private HouseholdService householdService = new HouseholdServiceImpl();
+    
     @InjectMocks
     private UserService userService = new UserServiceImpl();
 
@@ -49,6 +57,7 @@ public class ShopingItemServiceTest {
 
     private ShoppingItem shoppingItem;
     private ShoppingList shoppingList;
+    private Household household;
     private User user;
 
     @BeforeMethod
@@ -58,7 +67,13 @@ public class ShopingItemServiceTest {
         user.setFirstName("Us");
         user.setLastName("Er");
         user.setPassword("pwd");
-
+        
+        household = new Household(1L);
+        user.setEmail("user@user.com");
+        user.setFirstName("Us");
+        user.setLastName("Er");
+        user.setPassword("pwd");
+        
         shoppingList = new ShoppingList(1L);
         shoppingList.setName("ShoppingListTest");
 
@@ -69,6 +84,7 @@ public class ShopingItemServiceTest {
         shoppingItem.setQuantity((long) 15);
         shoppingItem.setShoppingList(shoppingList);
         shoppingList.addItem(shoppingItem);
+        shoppingList.setHousehold(household);
     }
 
     public void assertMatch(ShoppingItem shoppingItemI) {
