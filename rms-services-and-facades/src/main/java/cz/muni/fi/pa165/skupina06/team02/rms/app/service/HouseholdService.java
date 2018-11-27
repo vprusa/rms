@@ -71,14 +71,14 @@ public interface HouseholdService {
      * 
      * @param tenant
      */
-    void removeTenant(Long tenantId, Long housheoldId);
+    void removeTenant(User tenant, Household housheold);
 
     /**
      * Add tenant to tenants and Household to tenant
      * 
      * @param tenant
      */
-    void addTenant(Long tenantId, Long housheoldId);
+    void addTenant(User tenant, Household housheold);
 
 
 }
