@@ -79,17 +79,21 @@ public class HouseholdServiceTest {
         Assert.assertTrue(h.get(0).getId().equals(1L));
     }
 
-//    @Test
-//    public void testRemoveTenant() {
-//        householdService.removeTenant(tenant1, household);
-//        Assert.assertEquals(household.getTenants().size(), 0);
-//    }
+    @Test
+    public void testRemoveTenant() {
+        when(householdDao.findAll()).thenReturn(Collections.emptyList());
+        //householdService.removeTenant(tenant1, household);
+        // TODO mock tenants
+        // Assert.assertEquals(household.getTenants().size(), 0);
+    }
 
     @Test
     public void testAddTenant() {
-       // householdService.addTenant(tenant2, household);
-       /* Assert.assertEquals(household.getTenants().size(), 2);
-        Assert.assertTrue(household.getTenants().contains(tenant1));
-        Assert.assertTrue(household.getTenants().contains(tenant2));*/
+        when(householdDao.findAll()).thenReturn(Collections.singletonList(household));
+        //householdService.addTenant(tenant2, household);
+        // TODO mock tenants
+        // Assert.assertEquals(household.getTenants().size(), 2);
+        // Assert.assertTrue(household.getTenants().contains(tenant1));
+        // Assert.assertTrue(household.getTenants().contains(tenant2));
     }
 }

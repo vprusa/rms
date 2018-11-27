@@ -102,7 +102,7 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      */
     @Override
     public void removeTenant(UserDTO tenant, HouseholdDTO household) {
-        householdService.removeTenant(tenant.getId(), household.getId());
+        householdService.removeTenant(beanMappingService.mapTo(tenant, User.class), beanMappingService.mapTo(household, Household.class));
     }
 
     /*
@@ -115,6 +115,6 @@ public class HouseholdFacadeImpl implements HouseholdFacade {
      */
     @Override
     public void addTenant(UserDTO tenant, HouseholdDTO household) {
-        householdService.addTenant(tenant.getId(), household.getId());
+        householdService.addTenant(beanMappingService.mapTo(tenant, User.class), beanMappingService.mapTo(household, Household.class));
     }
 }

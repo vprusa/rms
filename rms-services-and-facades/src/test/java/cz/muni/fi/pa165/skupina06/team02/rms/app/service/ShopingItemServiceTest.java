@@ -192,34 +192,12 @@ public class ShopingItemServiceTest {
     @Test
     public void deleteShoppingItem() {
         // can not user argument 
+        // TODO mock ShoppingItem
         //when(shoppingItemDao.delete(argThat(shoppingItem))).thenReturn(shoppingItem);
         //when(shoppingItemDao.delete(new ShoppingItem(1L)));
-        //shoppingItemService.deleteShoppingItem(shoppingItem);
-        //ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(shoppingItem.getId());
-        //Assert.assertNull(shoppingItem2);
+        shoppingItemService.deleteShoppingItem(shoppingItem);
+        ShoppingItem shoppingItem2 = shoppingItemService.findShoppingItemById(shoppingItem.getId());
+        Assert.assertNull(shoppingItem2);
     }
 
-    /**
-     * Test: Add item to the specific shopping list
-     * <p>
-     * If shopping item has already set the shopping list, InvalidArgumentException
-     * is thrown.
-     */
-    @Test
-    public void addItemToShoppingList() {
-
-    }
-
-    /**
-     * Test: Move item to other shopping list
-     * <p>
-     * Moves item to list, without checking, if list is not already set.
-     *
-     * param shoppingItem item to move param shoppingList shoppinglist to move the
-     * item
-     */
-    @Test
-    public void moveItemToShoppingList() {
-
-    }
 }

@@ -122,8 +122,8 @@ public class HouseholdServiceImpl implements HouseholdService {
      * cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
      */
     @Override
-    public void removeTenant(Long tenantId, Long housheoldId) {
-        userDao.findById(tenantId).leaveHousehold(householdDao.findById(housheoldId));
+    public void removeTenant(User tenant, Household housheold) {
+        userDao.findById(tenant.getId()).leaveHousehold(householdDao.findById(housheold.getId()));
     }
 
     /*
@@ -135,8 +135,8 @@ public class HouseholdServiceImpl implements HouseholdService {
      * cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household)
      */
     @Override
-    public void addTenant(Long tenantId, Long housheoldId) {
-        userDao.findById(tenantId).joinHousehold(householdDao.findById(housheoldId));
+    public void addTenant(User tenant, Household housheold) {
+        userDao.findById(tenant.getId()).joinHousehold(householdDao.findById(housheold.getId()));
     }
 
 }
