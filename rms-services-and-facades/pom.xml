@@ -11,7 +11,6 @@
     </parent>
     <artifactId>rms-services-and-facades</artifactId>
     <packaging>jar</packaging>
-    <!--<packaging>war</packaging> -->
     <name>rms-services-and-facades</name>
     <url>https://github.com/433769/rms</url>
 
