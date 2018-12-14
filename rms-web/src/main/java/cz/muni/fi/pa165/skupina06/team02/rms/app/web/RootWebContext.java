@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
-//import cz.muni.fi.pa165.team02.rms.app.dto.ProductDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO;
 
 import org.springframework.context.annotation.ComponentScan;
@@ -13,8 +12,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import cz.muni.fi.pa165.sampledata.EshopWithSampleDataConfiguration;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.mixin.ProductDTOMixin;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.mixin.UserDTOMixin;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.config.ServiceConfiguration;
 
@@ -28,22 +25,27 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author Vojtech Prusa
+ *
+ */
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class, EshopWithSampleDataConfiguration.class})
-@ComponentScan(basePackages = {"cz.muni.fi.pa165.team02.rms.app.web.rest.controllers", "cz.muni.fi.pa165.team02.rms.app.web.rest.assemblers"})
+@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class })
+@ComponentScan(basePackages = { "cz.muni.fi.pa165.team02.rms.app.web.rest.controllers",
+        "cz.muni.fi.pa165.team02.rms.app.web.rest.assemblers" })
 public class RootWebContext implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AllowOriginInterceptor()); 
+        registry.addInterceptor(new AllowOriginInterceptor());
     }
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-    
+
     @Bean
     @Primary
     public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
@@ -52,12 +54,11 @@ public class RootWebContext implements WebMvcConfigurer {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
-        
-        //objectMapper.addMixIn(ProductDTO.class, ProductDTOMixin.class);
-        objectMapper.addMixIn(UserDTO.class,    UserDTOMixin.class);
-        
+
+        objectMapper.addMixIn(UserDTO.class, UserDTOMixin.class);
+
         objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
-   
+
         jsonConverter.setObjectMapper(objectMapper);
         return jsonConverter;
     }
@@ -66,5 +67,5 @@ public class RootWebContext implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(customJackson2HttpMessageConverter());
     }
-    
+
 }

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * REST Controller for Users
  * 
- * @author brossi
+ * @author Vojtech Prusa
  */
 @RestController
 @RequestMapping(ApiUris.ROOT_URI_USERS)
@@ -41,7 +41,6 @@ public class UsersController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final Collection<UserDTO> getUsers() throws JsonProcessingException {
-        
         logger.debug("rest getUsers()");
         return userFacade.getAllUsers();
     }

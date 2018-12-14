@@ -8,11 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
 
+/**
+ * @author Vojtech Prusa
+ *
+ */
 @RestController
 public class MainController {
     
@@ -31,10 +34,10 @@ public class MainController {
 
         Map<String,String> resourcesMap = new HashMap<>();
         
-        resourcesMap.put("products_uri", ApiUris.ROOT_URI_PRODUCTS);
-        resourcesMap.put("orders_uri", ApiUris.ROOT_URI_ORDERS);
+        resourcesMap.put("shoppingitems_uri", ApiUris.ROOT_URI_SHOPPINGITEMS);
+        resourcesMap.put("shoppinglists_uri", ApiUris.ROOT_URI_SHOPPINGLISTS);
         resourcesMap.put("users_uri", ApiUris.ROOT_URI_USERS);
-        resourcesMap.put("categories_uri", ApiUris.ROOT_URI_CATEGORIES);
+        resourcesMap.put("households_uri", ApiUris.ROOT_URI_HOUSEHOLDS);
         
         return Collections.unmodifiableMap(resourcesMap);
         

@@ -1,7 +1,11 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers;
 
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.HouseholdDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingItemDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.HouseholdFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingItemFacade;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingListFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.exceptions.ResourceNotFoundException;
 
@@ -23,23 +27,24 @@ import org.springframework.http.MediaType;
  * @author Vojtech Prusa
  */
 @RestController
-@RequestMapping(ApiUris.ROOT_URI_SHOPPINGITEMS)
-public class ShoppingItemController {
+@RequestMapping(ApiUris.ROOT_URI_HOUSEHOLDS)
+public class HouseholdController {
 
-    final static Logger logger = LoggerFactory.getLogger(ShoppingItemController.class);
+    final static Logger logger = LoggerFactory.getLogger(HouseholdController.class);
 
     @Inject
-    private ShoppingItemFacade shoppingItemFacade;
+    private HouseholdFacade housheoldFacade;
 
     /**
      * get all the categories
+     * 
      * @return list of ShoppingItemDTOs
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final List<ShoppingItemDTO> getShoppingItem() {
+    public final List<HouseholdDTO> getShoppingItem() {
 
-        logger.debug("rest getShoppingItem()");
-        return shoppingItemFacade.getAllItems();
+        logger.debug("rest getHousehold()");
+        return housheoldFacade.findAll();
     }
 
     /**
@@ -51,15 +56,15 @@ public class ShoppingItemController {
      * @throws Exception ResourceNotFoundException
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final ShoppingItemDTO getShoppingItem(@PathVariable("id") long id) throws Exception {
+    public final HouseholdDTO getShoppingItem(@PathVariable("id") long id) throws Exception {
 
-        logger.debug("rest getShoppingItem({})", id);
+        logger.debug("rest getHousehold({})", id);
 
-        ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(id);
-        if (shoppingItemDTO == null) {
+        HouseholdDTO householdDTO = housheoldFacade.findHouseholdById(id);
+        if (householdDTO == null) {
             throw new ResourceNotFoundException();
         }
 
-        return shoppingItemDTO;
+        return householdDTO;
     }
 }
