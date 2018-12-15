@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.dto;
  */
 public class UserDTO
 {
+
     private Long id;
   
     private String password;
@@ -24,6 +25,24 @@ public class UserDTO
     public UserDTO(){
         
     }
+    
+    /**
+     * Constructor
+     *
+     * @param id
+     * @param password
+     * @param email
+     * @param firstName
+     * @param lastName
+     */
+    public UserDTO(Long id, String password, String email, String firstName, String lastName) {
+        this.id = id;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     
     /**
      * Getter

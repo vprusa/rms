@@ -11,6 +11,8 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO;
  *
  * Facade interface for User
  * 
+ * @UserFacadeImpl
+ * 
  */
 public interface UserFacade {
 	
@@ -52,5 +54,7 @@ public interface UserFacade {
 	 * @return boolean true on success
 	 */
 	boolean authenticate(UserAuthenticateDTO u);
+	
+	boolean deleteUser(Long userId);
 
 }
