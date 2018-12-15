@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers;
 
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingItemDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingItemFacade;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingListFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.exceptions.ResourceNotFoundException;
 
@@ -23,23 +25,23 @@ import org.springframework.http.MediaType;
  * @author Vojtech Prusa
  */
 @RestController
-@RequestMapping(ApiUris.ROOT_URI_SHOPPINGITEMS)
-public class ShoppingItemController {
+@RequestMapping(ApiUris.ROOT_URI_SHOPPINGLISTS)
+public class ShoppingListController {
 
-    final static Logger logger = LoggerFactory.getLogger(ShoppingItemController.class);
+    final static Logger logger = LoggerFactory.getLogger(ShoppingListController.class);
 
     @Inject
-    private ShoppingItemFacade shoppingItemFacade;
+    private ShoppingListFacade shoppingListFacade;
 
     /**
      * get all the categories
      * @return list of ShoppingItemDTOs
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final List<ShoppingItemDTO> getShoppingItem() {
+    public final List<ShoppingListDTO> getShoppingItem() {
 
-        logger.debug("rest getShoppingItem()");
-        return shoppingItemFacade.getAllItems();
+        logger.debug("rest getShoppingList()");
+        return shoppingListFacade.getAllShoppingLists();
     }
 
     /**
@@ -51,15 +53,15 @@ public class ShoppingItemController {
      * @throws Exception ResourceNotFoundException
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final ShoppingItemDTO getShoppingItem(@PathVariable("id") long id) throws Exception {
+    public final ShoppingListDTO getShoppingItem(@PathVariable("id") long id) throws Exception {
 
-        logger.debug("rest getShoppingItem({})", id);
+        logger.debug("rest getShoppingList({})", id);
 
-        ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(id);
-        if (shoppingItemDTO == null) {
+        ShoppingListDTO shoppingListDTO = shoppingListFacade.getListById(id);
+        if (shoppingListDTO == null) {
             throw new ResourceNotFoundException();
         }
 
-        return shoppingItemDTO;
+        return shoppingListDTO;
     }
 }

@@ -9,9 +9,16 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.service.BeanMappingService;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.HouseholdService;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author Martin Lacko
+ */
+@Service
+@Transactional
 public class ShoppingListFacadeImpl implements ShoppingListFacade {
     @Autowired
     private ShoppingListService shoppingListService;

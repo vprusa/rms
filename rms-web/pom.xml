@@ -23,6 +23,7 @@
 		<tomcat.version>8.5.31</tomcat.version>
 	</properties>
 
+<!-- 
 	<build>
 		<plugins>
 			<plugin>
@@ -49,40 +50,23 @@
 			</plugin>
 		</plugins>
 	</build>
-
+  -->
+	<build>
+	      <plugins>
+	          <!--  embedded tomcat 8 -->
+	            <plugin>
+	                <groupId>org.codehaus.cargo</groupId>
+	                <artifactId>cargo-maven2-plugin</artifactId>
+	            </plugin>
+	        </plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>cz.muni.fi.pa165.skupina06.team02.rms</groupId>
 			<artifactId>rms-services-and-facades</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		<dependency>
-            <groupId>cz.muni.fi.pa165.skupina06.team02.rms</groupId>
-            <artifactId>rms-api</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>

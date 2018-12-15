@@ -7,9 +7,11 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     ShoppingListDao shoppingListDao;

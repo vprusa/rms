@@ -14,7 +14,6 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User;
  *         entity.
  * 
  */
-@Service
 public interface UserService {
 
     /**

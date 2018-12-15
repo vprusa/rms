@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author Martin Lacko
+ */
 @Service
 @Transactional
 public class ShoppingItemFacadeImpl implements ShoppingItemFacade {

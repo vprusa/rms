@@ -6,11 +6,11 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest;
  * other URIs also for the sub-resources so that it can 
  * reused globally from all the controllers
  * 
- * @author brossi
+ * @author Vojtech Prusa
  */
 public abstract class ApiUris {
-    public static final String ROOT_URI_PRODUCTS   = "/products"; 
+    public static final String ROOT_URI_SHOPPINGITEMS   = "/shoppingitems"; 
     public static final String ROOT_URI_USERS      = "/users";
-    public static final String ROOT_URI_ORDERS     = "/orders";
-    public static final String ROOT_URI_CATEGORIES = "/categories";  
+    public static final String ROOT_URI_SHOPPINGLISTS     = "/shoppinglists";
+    public static final String ROOT_URI_HOUSEHOLDS = "/households";  
 }

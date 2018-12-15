@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Martin Lacko
  */

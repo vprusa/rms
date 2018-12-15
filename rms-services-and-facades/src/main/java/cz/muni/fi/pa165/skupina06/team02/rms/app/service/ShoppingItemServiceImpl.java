@@ -7,12 +7,14 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author Martin Lacko
  */
+@Service
 public class ShoppingItemServiceImpl implements ShoppingItemService {
     @Autowired
     private ShoppingItemDao shoppingItemDao;
