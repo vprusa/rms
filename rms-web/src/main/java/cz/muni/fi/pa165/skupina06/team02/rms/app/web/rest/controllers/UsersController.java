@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(ApiUris.ROOT_URI_USERS)
-public class UsersController {
+public class UsersController extends BaseController {
     
     final static Logger logger = LoggerFactory.getLogger(UsersController.class);
 
