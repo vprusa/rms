@@ -17,7 +17,7 @@ import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
  *
  */
 @RestController
-public class MainController {
+public class MainController extends BaseController {
     
     final static Logger logger = LoggerFactory.getLogger(MainController.class);
     
@@ -26,6 +26,7 @@ public class MainController {
      * Provides access to all the resources with links to resource URIs
      * Can be even extended further so that all the actions on all the resources are available
      * and can be reused in all the controllers (possibly in full HATEOAS style)
+     *
      * 
      * @return resources uris
      */

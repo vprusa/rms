@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author brossi
  */
 @ControllerAdvice
-public class GlobalExceptionController {
+public class GlobalExceptionController extends BaseController  {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)

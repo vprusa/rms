@@ -28,7 +28,7 @@ import org.springframework.http.MediaType;
  */
 @RestController
 @RequestMapping(ApiUris.ROOT_URI_HOUSEHOLDS)
-public class HouseholdController {
+public class HouseholdController extends BaseController {
 
     final static Logger logger = LoggerFactory.getLogger(HouseholdController.class);
 

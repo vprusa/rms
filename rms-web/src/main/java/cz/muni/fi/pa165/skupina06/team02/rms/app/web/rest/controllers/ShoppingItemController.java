@@ -24,7 +24,7 @@ import org.springframework.http.MediaType;
  */
 @RestController
 @RequestMapping(ApiUris.ROOT_URI_SHOPPINGITEMS)
-public class ShoppingItemController {
+public class ShoppingItemController extends BaseController {
 
     final static Logger logger = LoggerFactory.getLogger(ShoppingItemController.class);
 
