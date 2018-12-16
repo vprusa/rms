@@ -32,8 +32,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @Configuration
 @Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class })
-@ComponentScan(basePackages = { "cz.muni.fi.pa165.team02.rms.app.web.rest.controllers",
-        "cz.muni.fi.pa165.team02.rms.app.web.rest.assemblers" })
+@ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers" })
 public class RootWebContext implements WebMvcConfigurer {
 
     @Override
