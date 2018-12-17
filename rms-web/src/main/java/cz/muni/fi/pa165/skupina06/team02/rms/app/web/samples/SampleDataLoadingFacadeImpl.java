@@ -33,7 +33,7 @@ import java.util.Random;
  *
  */
 @Component
-@Transactional //transactions are handled on facade layer
+@Transactional // transactions are handled on facade layer
 public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     final static Logger log = LoggerFactory.getLogger(SampleDataLoadingFacadeImpl.class);
@@ -55,13 +55,15 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         User jan = user("password", "Jan", "Naj");
         User kel = user("password", "Lek", "Kel");
 
-        ShoppingItem orange = shoppingItem("orange", false, tom, 10l, null);
-        
         Household adamsH = household("AdamsH", "666", "CZ", "Elm Street", "333 x2", null, adam);
-        ShoppingList adamsSl = shoppingList("AdamsSL", adamsH, orange);
+
+
+        ShoppingList adamsSl = shoppingList("AdamsSL", adamsH, null);
+        ShoppingItem orange = shoppingItem("orange", false, tom, 10l, adamsSl);
         // TODO
-        
-        //order(admin, daysBeforeNow(10), OrderState.DONE, orderItem(duck, 5), orderItem(diamonds, 1));
+
+        // order(admin, daysBeforeNow(10), OrderState.DONE, orderItem(duck, 5),
+        // orderItem(diamonds, 1));
         log.info("Everything loaded");
     }
 
@@ -79,23 +81,29 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         return u;
     }
 
-    private Household household(String name, String buildingNumber, String state, String street, String zipCode, List<ShoppingList> shoppingLists, User... tenants) {
-        Household  h = new Household();
+    private Household household(String name, String buildingNumber, String state, String street, String zipCode,
+            List<ShoppingList> shoppingLists, User... tenants) {
+        Household h = new Household();
         h.setBuildingNumber(buildingNumber);
         h.setState(state);
         h.setStreet(street);
         h.setZipCode(zipCode);
-        for(User tenant : tenants) {
-            h.addTenant(tenant);
+        if (tenants != null) {
+            for (User tenant : tenants) {
+                h.addTenant(tenant);
+            }
         }
-        for(ShoppingList shoppingList : shoppingLists) {
-            h.addToShoppingLists(shoppingList);
+        if (shoppingLists != null) {
+            for (ShoppingList shoppingList : shoppingLists) {
+                h.addToShoppingLists(shoppingList);
+            }
         }
         householdService.createHousehold(h);
         return h;
     }
 
-    private ShoppingItem shoppingItem(String name, Boolean bought, User dedicatedBuyer, Long quantity, ShoppingList shoppingList) {
+    private ShoppingItem shoppingItem(String name, Boolean bought, User dedicatedBuyer, Long quantity,
+            ShoppingList shoppingList) {
         ShoppingItem si = new ShoppingItem();
         si.setName(name);
         si.setBought(bought);
@@ -110,8 +118,10 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         ShoppingList sl = new ShoppingList();
         sl.setHousehold(household);
         sl.setName(name);
-        for(ShoppingItem si : shoppingItems) {
-            sl.addItem(si);
+        if (shoppingItems != null) {
+            for (ShoppingItem si : shoppingItems) {
+                sl.addItem(si);
+            }
         }
 
         shoppingListService.createShoppingList(sl);
