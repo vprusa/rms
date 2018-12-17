@@ -22,32 +22,49 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Vojtech Prusa
  *
  */
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
-@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class })
+@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class/*, WebSecurityConfig.class */})
 @ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
-        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers" })
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers", "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest" })
 public class RootWebContext implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AllowOriginInterceptor());
+        //registry.addInterceptor(new AllowOriginInterceptor());
     }
+    /*
+    @Bean
+    public UserDetailsService userDetailsService() throws Exception {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
+        return manager;
+    }*/
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+        //configurer.enable();
     }
-
+    
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //registry.addViewController("/login");//.setViewName("login");
+    }
+    
     @Bean
-    @Primary
+    //@Primary
     public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -67,5 +84,5 @@ public class RootWebContext implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(customJackson2HttpMessageConverter());
     }
-
+    
 }
