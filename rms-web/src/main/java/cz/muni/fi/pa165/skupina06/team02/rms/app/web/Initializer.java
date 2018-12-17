@@ -6,8 +6,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.WebSecurityConfig;
-
 /**
  * @author Vojtech Prusa
  *
@@ -16,12 +14,12 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{RootWebContext.class, WebSecurityConfig.class};
+        return new Class[]{/*RootWebContext.class,*/ WebSecurityConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{ WebSecurityConfig.class};
+        return null; //new Class[]{ WebSecurityConfig.class};
     }
 
     @Override

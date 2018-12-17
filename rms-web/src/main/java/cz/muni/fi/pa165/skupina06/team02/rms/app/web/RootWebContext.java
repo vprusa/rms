@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.WebSecurityConfig;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.mixin.UserDTOMixin;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.config.ServiceConfiguration;
 
@@ -35,16 +34,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Vojtech Prusa
  *
  */
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
-@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class, WebSecurityConfig.class })
+@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class/*, WebSecurityConfig.class */})
 @ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
         "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers", "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest" })
 public class RootWebContext implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AllowOriginInterceptor());
+        //registry.addInterceptor(new AllowOriginInterceptor());
     }
     /*
     @Bean

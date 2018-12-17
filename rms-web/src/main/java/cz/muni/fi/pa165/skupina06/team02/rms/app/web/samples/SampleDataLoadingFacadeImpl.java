@@ -48,7 +48,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     private ShoppingListService shoppingListService;
 
     @Override
-    @SuppressWarnings("unused")
     public void loadData() throws IOException {
         log.info("Loaded tenants");
         User adam = user("password", "Adam", "Mada");
