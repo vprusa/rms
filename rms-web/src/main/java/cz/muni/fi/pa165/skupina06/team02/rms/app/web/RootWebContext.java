@@ -74,12 +74,7 @@ public class RootWebContext implements WebMvcConfigurer {
         log.debug("mapping / URI to home view");
         registry.addViewController("/").setViewName("home");
     }
-
-    /**
-     * TODO: This will be most probably unnecessary, Remove if required
-     *
-     * @return
-     */
+    
     @Bean
     public ViewResolver viewResolver() {
         log.debug("registering JSP in /WEB-INF/jsp/ as views");
