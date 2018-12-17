@@ -1,40 +1,40 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO;
-
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.mixin.UserDTOMixin;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.mixin.UserDTOMixin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Vojtech Prusa
- *
  */
 @EnableWebMvc
 @Configuration
-@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class })
-@ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
-        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers" })
+@Import({ServiceConfiguration.class, RmsWithSampleDataConfiguration.class})
+@ComponentScan(basePackages = {"cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers"})
 public class RootWebContext implements WebMvcConfigurer {
+    private static final Logger log = LoggerFactory.getLogger(RootWebContext.class);
+    private static final String TEXTS = "Texts";
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -66,6 +66,42 @@ public class RootWebContext implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(customJackson2HttpMessageConverter());
+    }
+
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        log.debug("mapping / URI to home view");
+        registry.addViewController("/").setViewName("home");
+    }
+
+    /**
+     * TODO: This will be most probably unnecessary, Remove if required
+     *
+     * @return
+     */
+    @Bean
+    public ViewResolver viewResolver() {
+        log.debug("registering JSP in /WEB-INF/jsp/ as views");
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/");
+        viewResolver.setSuffix(".html");
+        return viewResolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        log.debug("registering ResourceBundle for web Texts");
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename(TEXTS);
+        return messageSource;
+    }
+
+    @Bean
+    public Validator validator() {
+        log.debug("registering JSR-303 validator");
+        return new LocalValidatorFactoryBean();
+
     }
 
 }
