@@ -35,15 +35,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder builder)
             throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-        builder.inMemoryAuthentication().passwordEncoder(encoder)
-        .withUser("user").password(encoder.encode("password")).roles("USER").and()
-        .withUser("admin").password(encoder.encode("password")).roles("ADMIN");
-        // ISSUE: too slow
-        //PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        // TODO switch encoders .. ISSUE: BCryptPasswordEncoder is too slow (TODO optimalize)
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
         //builder.inMemoryAuthentication().passwordEncoder(encoder)
-        //.withUser("user").password("{noop}password").roles("USER").and()
-        //.withUser("admin").password("{noop}password").roles("ADMIN");
+        //.withUser("user").password(encoder.encode("password")).roles("USER").and()
+        //.withUser("admin").password(encoder.encode("password")).roles("ADMIN");
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        builder.inMemoryAuthentication().passwordEncoder(encoder)
+        .withUser("user").password("{noop}password").roles("USER").and()
+        .withUser("admin").password("{noop}password").roles("ADMIN");
         
     }
     
