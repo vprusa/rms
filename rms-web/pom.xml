@@ -126,6 +126,11 @@
             <artifactId>javax.el</artifactId>
             <scope>test</scope> <!-- conflicts with tomcat libraries, but needed for tests to run -->
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.1.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
