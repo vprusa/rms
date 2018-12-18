@@ -50,7 +50,7 @@ public class UsersController extends BaseController {
      * @throws ResourceNotFoundException
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public final Long register(UserDTO userDTO) throws Exception {
+    public final Long register(@RequestBody UserDTO userDTO) throws Exception {
     //public final UserDTO registerUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult bindingResult,
     //        Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) throws Exception {
     

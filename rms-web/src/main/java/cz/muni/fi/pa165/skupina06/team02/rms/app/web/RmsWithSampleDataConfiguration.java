@@ -1,6 +1,9 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web;
 
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.web.samples.SampleDataLoadingFacade;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.web.samples.SampleDataLoadingFacadeImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +21,17 @@ import java.io.IOException;
  */
 @Configuration
 @Import(ServiceConfiguration.class)
-//@ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
+@ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
 public class RmsWithSampleDataConfiguration {
 
     final static Logger log = LoggerFactory.getLogger(RmsWithSampleDataConfiguration.class);
 
-    //@Autowired
-    //SampleDataLoadingFacade sampleDataLoadingFacade;
+    @Autowired
+    SampleDataLoadingFacade sampleDataLoadingFacade;
 
     @PostConstruct
     public void dataLoading() throws IOException {
         log.debug("dataLoading()");
-        //sampleDataLoadingFacade.loadData();
+        sampleDataLoadingFacade.loadData();
     }
 }
