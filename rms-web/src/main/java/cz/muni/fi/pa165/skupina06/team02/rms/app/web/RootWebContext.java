@@ -23,15 +23,26 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Vojtech Prusa
  */
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class, RmsWithSampleDataConfiguration.class})
-@ComponentScan(basePackages = {"cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
-        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers"})
+@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class/*, WebSecurityConfig.class */})
+@ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers", "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest" })
 public class RootWebContext implements WebMvcConfigurer {
     private static final Logger log = LoggerFactory.getLogger(RootWebContext.class);
     private static final String TEXTS = "Texts";
