@@ -72,12 +72,12 @@ public class RootWebContext implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         log.debug("mapping / URI to home view");
-        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/").setViewName("index");
     }
-    
+
     @Bean
     public ViewResolver viewResolver() {
-        log.debug("registering JSP in /WEB-INF/jsp/ as views");
+        log.debug("registering JSP in /WEB-INF as views");
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".html");
