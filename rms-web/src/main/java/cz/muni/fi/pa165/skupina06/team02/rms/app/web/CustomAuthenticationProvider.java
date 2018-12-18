@@ -41,22 +41,22 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("authenticate: " + authentication.getName());
+        log.info("Authenticate: " + authentication.getName());
         String email = authentication.getName();
         String password = authentication.getCredentials().toString();
         if (email == null) {
             return null;
         }
         // This should never ever happen
-       /*if (userDetailsService == null) {
+        /*if (userDetailsService == null) {
             return null;
         }*/
         
         UserDetails u = userDetailsService.loadUserByUsername(email);//userService.findByEmail(email);
-        log.info("u: " );
-        log.info("up: " +u.getPassword());
-        log.info("p: " +password);
-        if (u == null || UserServiceImpl.validatePassword(password,u.getPassword())) {
+        //log.info("u: " );
+        //log.info("up: " +u.getPassword());
+       // log.info("p: " +password);
+        if (u != null && UserServiceImpl.validatePassword(password,u.getPassword())) {
            // List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             //authorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(email, password, new ArrayList<>());
@@ -69,7 +69,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        log.info("authenticate: " + authentication.getName());
+        //log.info("authenticate: " + authentication.getName());
         //return authentication.equals(UsernamePasswordAuthenticationToken.class);
         return true;
     }

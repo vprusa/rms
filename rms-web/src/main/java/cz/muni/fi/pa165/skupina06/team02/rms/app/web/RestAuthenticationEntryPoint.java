@@ -10,6 +10,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 /**
+ * @author Vojtech Prusa
+ *
  * The Entry Point will not redirect to any sort of Login - it will return the 401
  */
 @Component
