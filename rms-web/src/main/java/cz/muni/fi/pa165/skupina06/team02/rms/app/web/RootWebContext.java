@@ -38,7 +38,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @author Vojtech Prusa
  */
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
 @Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class/*, WebSecurityConfig.class */})
 @ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
@@ -49,16 +49,28 @@ public class RootWebContext implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AllowOriginInterceptor());
+        //registry.addInterceptor(new AllowOriginInterceptor());
     }
+    /*
+    @Bean
+    public UserDetailsService userDetailsService() throws Exception {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
+        return manager;
+    }*/
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+        //configurer.enable();
     }
-
+    
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //registry.addViewController("/login");//.setViewName("login");
+    }
+    
     @Bean
-    @Primary
+    //@Primary
     public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -78,7 +90,6 @@ public class RootWebContext implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(customJackson2HttpMessageConverter());
     }
-
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -109,5 +120,4 @@ public class RootWebContext implements WebMvcConfigurer {
         return new LocalValidatorFactoryBean();
 
     }
-
 }
