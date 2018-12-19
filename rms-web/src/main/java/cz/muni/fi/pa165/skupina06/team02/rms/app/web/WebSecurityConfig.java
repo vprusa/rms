@@ -20,10 +20,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  *
  */
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Import({ RootWebContext.class })
+//@Import({ RootWebContext.class })
 @ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web",
         "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers",
         "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest", "cz.muni.fi.pa165.skupina06.team02.rms.app.service" })
@@ -84,7 +84,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // .authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
        // http.authorizeRequests().anyRequest().authenticated().and().httpBasic().and().formLogin().permitAll().and()
        // .logout().permitAll();
+        //http.authorizeRequests().antMatchers("/index.html").permitAll();
         http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+
         http.formLogin().permitAll().and().logout().permitAll();
     }
 
