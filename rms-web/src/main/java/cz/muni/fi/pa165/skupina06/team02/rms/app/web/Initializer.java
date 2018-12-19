@@ -14,7 +14,7 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{/*RootWebContext.class,*/ WebSecurityConfig.class};
+        return new Class[]{RootWebContext.class/*, WebSecurityConfig.class*/};
     }
 
     @Override

@@ -38,39 +38,41 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @author Vojtech Prusa
  */
-//@EnableWebMvc
+@EnableWebMvc
 @Configuration
-@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class/*, WebSecurityConfig.class */})
+@Import({ ServiceConfiguration.class, RmsWithSampleDataConfiguration.class, WebSecurityConfig.class })
 @ComponentScan(basePackages = { "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers",
-        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers", "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest" })
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.assemblers",
+        "cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest" })
 public class RootWebContext implements WebMvcConfigurer {
     private static final Logger log = LoggerFactory.getLogger(RootWebContext.class);
     private static final String TEXTS = "Texts";
 
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Do not change!!! Together with addViewControllers(**) and viewResolver(**)
+        // this makes work together REST with
+        // rms-web/src/main/resources/WEB-INF/index.html as default page at "/" and
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/WEB-INF/").setCachePeriod(31556926);
+    }
+
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(new AllowOriginInterceptor());
+        // registry.addInterceptor(new AllowOriginInterceptor());
     }
     /*
-    @Bean
-    public UserDetailsService userDetailsService() throws Exception {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
-        return manager;
-    }*/
+     * @Bean public UserDetailsService userDetailsService() throws Exception {
+     * InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+     * manager.createUser(User.withDefaultPasswordEncoder().username("user").
+     * password("password").roles("USER").build()); return manager; }
+     */
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        //configurer.enable();
+        // configurer.enable();
     }
-    
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        //registry.addViewController("/login");//.setViewName("login");
-    }
-    
+
     @Bean
-    //@Primary
     public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -95,13 +97,14 @@ public class RootWebContext implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         log.debug("mapping / URI to home view");
         registry.addViewController("/").setViewName("index");
+        // addRedirectViewController("/", "/home");
     }
 
     @Bean
     public ViewResolver viewResolver() {
-        log.debug("registering JSP in /WEB-INF as views");
+        log.debug("registering /WEB-INF as views");
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/");
+        // viewResolver.setPrefix("/");
         viewResolver.setSuffix(".html");
         return viewResolver;
     }
