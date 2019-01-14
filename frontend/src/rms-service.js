@@ -112,18 +112,20 @@ export default {
     if (this.isDev()) {
       return this.getHouseholds().then(h => h.find(h => h.id && h.id === Number(id)));
     }
-    return this.getHouseholds().find(h => h.id != null && h.id === id);
+    return this.getHouseholds()
+      .then(hs => hs.find(h => h.id != null && h.id === id));
   },
   getUserHouseholds(uid) {
     if (this.isDev()) {
       return this.getHouseholds();
     }
     return this.getHouseholds()
-      .filter(h => h.tenants != null && h.tenants
-        .find(t => t.id === id));
+      .then(hs => hs
+        .filter(h => h.tenants != null && h.tenants
+          .find(t => t.id === id)));
   },
   getUser(email) {
-    return this.getUsers().find(u => u.email != null && u.email === email);
+    return this.getUsers().then(us => us.find(u => u.email != null && u.email === email));
   },
   getShoppingList(id) {
     if (this.isDev()) {
@@ -167,11 +169,11 @@ export default {
         }],
       };
     }
-    return this.getShoppingLists().find(l => l.id != null && l.id === id);
+    return this.getShoppingLists().then(sl => sl.find(l => l.id != null && l.id === id));
   },
 
   getShoppingItem(id) {
-    return this.getShoppingItems().find(i => i.id != null && i.id === id);
+    return this.getShoppingItems().then(si => si.find(i => i.id != null && i.id === id));
   },
 
   buyShoppingItem(id) {
