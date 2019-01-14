@@ -1,10 +1,8 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web;
 
-import org.apache.derby.vti.Restriction.AND;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * @author Vojtech Prusa
@@ -38,11 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
 
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    //@Autowired
+    //private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Autowired
-    private MySavedRequestAwareAuthenticationSuccessHandler mySuccessHandler;
+    private CustomSavedRequestAwareAuthenticationSuccessHandler mySuccessHandler;
 
     private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
 
@@ -60,8 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // .withUser("admin").password(encoder.encode("password")).roles("ADMIN");
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        builder.inMemoryAuthentication().passwordEncoder(encoder).withUser("user").password("{noop}password")
-                .roles("USER").and().withUser("admin").password("{noop}password").roles("ADMIN");
+        //builder.inMemoryAuthentication().passwordEncoder(encoder).withUser("user").password("{noop}password")
+        //        .roles("USER").and().withUser("admin").password("{noop}password").roles("ADMIN");
         // builder.authenticationProvider(new CustomAuthenticationProvider());
         builder.authenticationProvider(customAuthenticationProvider);
     }
@@ -74,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * .anyRequest().authenticated() .and() .formLogin() //.loginPage("/login")
          * .permitAll() .and() .httpBasic() .and() .logout() .permitAll();
          */
+        http.csrf().disable();
 
         /*http.csrf().disable().exceptionHandling() //
                 .authenticationEntryPoint(restAuthenticationEntryPoint);

@@ -121,7 +121,7 @@ public class UsersController extends BaseController {
 
     /**
      *
-     * getting user according to id
+     * getting user according to email
      * 
      * @param id user identifier
      * @return UserDTO

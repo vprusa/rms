@@ -21,10 +21,10 @@ import org.springframework.util.StringUtils;
  *
  */
 @Component
-public class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class CustomSavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
-    final static Logger log = LoggerFactory.getLogger(MySavedRequestAwareAuthenticationSuccessHandler.class);
+    final static Logger log = LoggerFactory.getLogger(CustomSavedRequestAwareAuthenticationSuccessHandler.class);
 
     @Override
     public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
@@ -32,17 +32,17 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAu
         log.info("onAuthenticationSuccess");
         
         if (savedRequest == null) {
-            clearAuthenticationAttributes(request);
+            //clearAuthenticationAttributes(request);
             return;
         }
         final String targetUrlParameter = getTargetUrlParameter();
         if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
             requestCache.removeRequest(request, response);
-            clearAuthenticationAttributes(request);
+            //clearAuthenticationAttributes(request);
             return;
         }
 
-        clearAuthenticationAttributes(request);
+        //clearAuthenticationAttributes(request);
     }
 
     public void setRequestCache(final RequestCache requestCache) {
