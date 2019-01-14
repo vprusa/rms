@@ -27,8 +27,23 @@ Note: successful login result header contains new generated sessionId token that
 
 List of endpoints with URIs:
 
+
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/
+```
+
+All entities can:
+
+- get by id
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/<users|households|shoppingitems|shoppinglists>/{id}
+```
+
+- or list all
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/<users|households|shoppingitems|shoppinglists>
 ```
 
 User:
@@ -45,9 +60,26 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 
 Shopping Items:
 
+- list all:
+
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/shoppingitems
 ```
+
+- create:
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X POST http://localhost:8080/rms-web/rest/shoppingitems/create -u Adam@rms.com:password --data '{"id":0,"name":"xyz","quantity":5,"buyerId":1,"shoppingListId":1}'
+
+```
+
+- buy:
+    - (returns true if not bought yet or false if already bought before this acquisition) 
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/shoppingitems/buy/{itemId} -u Adam@rms.com:password
+```
+
 
 
 Shopping Lists:

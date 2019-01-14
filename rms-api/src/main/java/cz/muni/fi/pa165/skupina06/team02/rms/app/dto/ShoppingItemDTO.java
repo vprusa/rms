@@ -75,4 +75,13 @@ public class ShoppingItemDTO {
     public int hashCode() {
         return Objects.hash(name, quantity, bought, buyer, list);
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "ShoppingItemDTO [id=" + id + ", name=" + name + ", quantity=" + quantity + ", bought=" + bought
+                + ", buyer=" + buyer + ", list=" + list + "]";
+    }
 }

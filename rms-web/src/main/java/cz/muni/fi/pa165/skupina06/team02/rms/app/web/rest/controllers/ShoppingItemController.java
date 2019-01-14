@@ -34,7 +34,6 @@ public class ShoppingItemController extends BaseController {
     @Inject
     private ShoppingItemFacade shoppingItemFacade;
 
-
     /**
      * 
      * Create new shoppingItem and returns its id
@@ -43,19 +42,21 @@ public class ShoppingItemController extends BaseController {
      * @return long id
      * @throws Exception ResourceNotFoundException if empty body
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST /*, produces = MediaType.APPLICATION_JSON_VALUE*/, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST /* , produces = MediaType.APPLICATION_JSON_VALUE */, consumes = MediaType.APPLICATION_JSON_VALUE)
     public final long createShoppingItem(@RequestBody ShoppingItemCreateDTO shoppingItem) throws Exception {
         if (shoppingItem == null) {
             throw new ResourceNotFoundException();
         }
         logger.debug("rest createShoppingItem({})", shoppingItem.toString());
-        //ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(shoppingItem.getI());
+        // ShoppingItemDTO shoppingItemDTO =
+        // shoppingItemFacade.getItemById(shoppingItem.getI());
         long newItemId = shoppingItemFacade.createItem(shoppingItem);
         return newItemId;
     }
-    
+
     /**
      * get all the categories
+     * 
      * @return list of ShoppingItemDTOs
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -85,5 +86,32 @@ public class ShoppingItemController extends BaseController {
 
         return shoppingItemDTO;
     }
-    
+
+    /**
+     * 
+     * Buy one shoppingItem specified by id
+     * 
+     * @param itemId identifier for the shoppingItem
+     * @return boolean if already bought false if not true
+     * @throws Exception ResourceNotFoundException
+     */
+    @RequestMapping(value = "/buy/{itemId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final boolean buyShoppingItem(@PathVariable("itemId") long itemId) throws Exception {
+
+        logger.info("rest getShoppingItem({})", itemId);
+
+        ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(itemId);
+        if (shoppingItemDTO == null) {
+            throw new ResourceNotFoundException();
+        }
+        logger.info(shoppingItemDTO.toString());
+
+        // basically null = false ..
+        if (shoppingItemDTO.getBought() != null || (shoppingItemDTO.getBought() != null && shoppingItemDTO.getBought().booleanValue() == false)) {
+            return false;
+        }
+        shoppingItemFacade.buyItem(shoppingItemDTO.getId());
+        return true;
+    }
+
 }
