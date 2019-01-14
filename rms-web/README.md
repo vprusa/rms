@@ -48,8 +48,16 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 
 User:
 
+ - list
+ 
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/users
+```
+
+- register 
+
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -u Adam@rms.com:password -X GET http://localhost:8080/rms-web/rest/users/register --data '{"password":"password","email":"Test","firstName":"","lastName":""}'
 ```
 
 Households:
