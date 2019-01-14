@@ -29,7 +29,7 @@ import org.springframework.http.MediaType;
 @RequestMapping(ApiUris.ROOT_URI_SHOPPINGITEMS)
 public class ShoppingItemController extends BaseController {
 
-    final static Logger logger = LoggerFactory.getLogger(ShoppingItemController.class);
+    final public static Logger logger = LoggerFactory.getLogger(ShoppingItemController.class);
 
     @Inject
     private ShoppingItemFacade shoppingItemFacade;

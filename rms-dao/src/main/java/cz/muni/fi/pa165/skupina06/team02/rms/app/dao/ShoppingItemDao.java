@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Interface for accessing ShoppingItems
+ * 
+ * {@link ShoppingItemDaoImpl}
  *
  * @author Martin Lacko
  */
