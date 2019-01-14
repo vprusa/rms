@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * @author Martin Lacko
+ * 
+ * {@link ShoppingListFacadeImpl}
  */
 public interface ShoppingListFacade {
     /**

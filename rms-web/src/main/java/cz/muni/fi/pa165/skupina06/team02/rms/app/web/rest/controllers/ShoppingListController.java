@@ -73,7 +73,7 @@ public class ShoppingListController extends BaseController {
      * @return long id
      * @throws Exception ResourceNotFoundException if empty body
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public final long createShoppingList(@RequestBody ShoppingListCreateDTO shoppingList) throws Exception {
         if (shoppingList == null) {
             throw new ResourceNotFoundException();
