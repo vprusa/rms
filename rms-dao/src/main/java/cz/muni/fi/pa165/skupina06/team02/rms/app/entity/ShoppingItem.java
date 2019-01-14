@@ -139,4 +139,13 @@ public class ShoppingItem {
     public int hashCode() {
         return Objects.hash(id, name, quantity, bought);
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "ShoppingItem [id=" + id + ", name=" + name + ", quantity=" + quantity + ", bought=" + bought
+                + ", dedicatedBuyer=" + dedicatedBuyer + ", shoppingList=" + shoppingList + "]";
+    }
 }

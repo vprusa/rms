@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.service.facades;
 
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingItemCreateDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListCreateDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingItem;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.ShoppingList;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingListFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.BeanMappingService;
@@ -51,11 +53,13 @@ public class ShoppingListFacadeImpl implements ShoppingListFacade {
         List<ShoppingList> lists = shoppingListService.findAllShoppingLists();
         return lists == null ? null : mappingService.mapTo(lists, ShoppingListDTO.class);
     }
-
+    
     @Override
     public Long createList(ShoppingListCreateDTO createDTO) {
+        ShoppingList list = mappingService.mapTo(createDTO, ShoppingList.class);
+        list.setHousehold(householdService.findHouseholdById(createDTO.getHouseholdId()));
         return shoppingListService.createShoppingList(
-                mappingService.mapTo(createDTO, ShoppingList.class)
+                list
         ).getId();
     }
 }

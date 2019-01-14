@@ -8,6 +8,9 @@ import java.util.List;
 
 /**
  * @author Martin Lacko
+ * 
+ * {@link ShoppingItemServiceImpl}
+ * 
  */
 public interface ShoppingItemService {
     /**

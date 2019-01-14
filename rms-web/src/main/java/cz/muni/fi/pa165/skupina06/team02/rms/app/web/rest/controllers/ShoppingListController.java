@@ -1,8 +1,7 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers;
 
-import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingItemDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListCreateDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListDTO;
-import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingItemFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingListFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.exceptions.ResourceNotFoundException;
@@ -12,6 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,5 +63,24 @@ public class ShoppingListController extends BaseController {
         }
 
         return shoppingListDTO;
+    }
+    
+    /**
+     * 
+     * Create new shoppingItem and returns its id
+     * 
+     * @param ShoppingItemCreateDTO as body
+     * @return long id
+     * @throws Exception ResourceNotFoundException if empty body
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public final long createShoppingList(@RequestBody ShoppingListCreateDTO shoppingList) throws Exception {
+        if (shoppingList == null) {
+            throw new ResourceNotFoundException();
+        }
+        logger.debug("rest createShoppingList({})", shoppingList.toString());
+        //ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(shoppingItem.getI());
+        long newListId = shoppingListFacade.createList(shoppingList);
+        return newListId;
     }
 }
