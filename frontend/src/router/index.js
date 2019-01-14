@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import User from '@/components/User'
 import Household from '@/components/Household'
 import ShoppingList from '@/components/ShoppingList'
+import Households from "@/components/Households";
 
 Vue.use(Router);
 
@@ -13,8 +14,9 @@ export default new Router({
       path: '/',
       name: 'Hello',
       component: Hello
-    }, {
-      path: '/user/:id',
+    },
+    {
+      path: '/users/:id',
       name: 'User',
       component: User,
     }, {
@@ -22,9 +24,13 @@ export default new Router({
       name: 'Household',
       component: Household,
     }, {
-      path: '/list/:id',
+      path: '/shoppinglists/:id',
       name: 'ShoppingList',
       component: ShoppingList,
+    }, {
+      path: '/households/',
+      name: 'Households',
+      component: Households,
     }
   ]
 })
