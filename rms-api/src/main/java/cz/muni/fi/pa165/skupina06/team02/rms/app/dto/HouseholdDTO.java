@@ -22,14 +22,14 @@ public class HouseholdDTO {
 
     private String state;
     
-    private Set<UserDTO> tenants = new HashSet<UserDTO>();
+    private Set<UserPublicDTO> tenants = new HashSet<UserPublicDTO>();
 
     /**
      * Getter
      *
      * @return tenants instance
      */
-    public Set<UserDTO> getTenants() {
+    public Set<UserPublicDTO> getTenants() {
         return tenants;
     }
 
@@ -38,7 +38,7 @@ public class HouseholdDTO {
      * 
      * @param tenants instance
      */
-    public void setTenants(Set<UserDTO> tenants) {
+    public void setTenants(Set<UserPublicDTO> tenants) {
         this.tenants = tenants;
     }
 
