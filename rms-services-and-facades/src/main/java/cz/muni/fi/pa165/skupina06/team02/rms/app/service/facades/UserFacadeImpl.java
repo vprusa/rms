@@ -6,9 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.Household;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.entity.User;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.UserFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.BeanMappingService;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.service.HouseholdService;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.service.UserService;
 
 import java.util.Collection;
@@ -24,6 +26,9 @@ public class UserFacadeImpl implements UserFacade {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private HouseholdService householdService;
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -94,6 +99,14 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public boolean deleteUser(Long userId) {
         return false;
+    }
+
+    @Override
+    public boolean updateHousheold(Long userId, Long householdId) {
+        User u = userService.findById(userId);
+        Household h = householdService.findHouseholdById(householdId);
+        householdService.addTenant(u, h);
+        return true;
     }
 
 }

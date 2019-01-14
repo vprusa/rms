@@ -55,6 +55,17 @@ public interface UserFacade {
 	 */
 	boolean authenticate(UserAuthenticateDTO u);
 	
-	boolean deleteUser(Long userId);
+    /**
+     * @param userId
+     * @return
+     */
+    boolean deleteUser(Long userId);
+    
+    /**
+     * @param userId
+     * @param householdId
+     * @return
+     */
+    boolean updateHousheold(Long userId, Long householdId);
 
 }

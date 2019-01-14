@@ -56,12 +56,11 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         User kel = user("password", "Lek", "Kel");
 
         Household adamsH = household("AdamsH", "666", "CZ", "Elm Street", "333 x2", null, adam);
-
+        adamsH.addTenant(adam);
 
         ShoppingList adamsSl = shoppingList("AdamsSL", adamsH, null);
-        ShoppingItem orange = shoppingItem("orange", false, tom, 10l, adamsSl);
-        // TODO
-
+        ShoppingItem orange = shoppingItem("orange", false, adam, 10l, adamsSl);
+        //adamsSl.addItem(orange);
         // order(admin, daysBeforeNow(10), OrderState.DONE, orderItem(duck, 5),
         // orderItem(diamonds, 1));
         log.info("Everything loaded");
