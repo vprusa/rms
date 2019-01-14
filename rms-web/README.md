@@ -77,7 +77,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X POS
     - (returns true if not bought yet or false if already bought before this acquisition) 
 
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rms-web/rest/shoppingitems/buy/{itemId} -u Adam@rms.com:password
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X POST http://localhost:8080/rms-web/rest/shoppingitems/buy/{itemId} -u Adam@rms.com:password
 ```
 
 

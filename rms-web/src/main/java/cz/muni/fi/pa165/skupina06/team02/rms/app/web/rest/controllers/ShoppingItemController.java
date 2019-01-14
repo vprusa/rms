@@ -95,7 +95,7 @@ public class ShoppingItemController extends BaseController {
      * @return boolean if already bought false if not true
      * @throws Exception ResourceNotFoundException
      */
-    @RequestMapping(value = "/buy/{itemId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/buy/{itemId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public final boolean buyShoppingItem(@PathVariable("itemId") long itemId) throws Exception {
 
         logger.info("rest getShoppingItem({})", itemId);
