@@ -8,6 +8,8 @@ import java.util.List;
  * Interface to access Users in database
  *
  * @author Martin Lacko
+ * 
+ * {@link UserDaoImpl}
  */
 public interface UserDao {
     /**

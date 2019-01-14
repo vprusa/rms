@@ -55,26 +55,6 @@ public class ShoppingItemController extends BaseController {
     }
     
     /**
-     * 
-     * Create new shoppingItem and returns its id
-     * 
-     * @param ShoppingItemCreateDTO as body
-     * @return long id
-     * @throws Exception ResourceNotFoundException if empty body
-     */
-    @RequestMapping(value = "/create", method = RequestMethod.POST /* , produces = MediaType.APPLICATION_JSON_VALUE */, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public final long createShoppingItem(@RequestBody ShoppingItemCreateDTO shoppingItem) throws Exception {
-        if (shoppingItem == null) {
-            throw new ResourceNotFoundException();
-        }
-        logger.debug("rest createShoppingItem({})", shoppingItem.toString());
-        // ShoppingItemDTO shoppingItemDTO =
-        // shoppingItemFacade.getItemById(shoppingItem.getI());
-        long newItemId = shoppingItemFacade.createItem(shoppingItem);
-        return newItemId;
-    }
-
-    /**
      * get all the categories
      * 
      * @return list of ShoppingItemDTOs
@@ -118,13 +98,13 @@ public class ShoppingItemController extends BaseController {
     @RequestMapping(value = "/buy/{itemId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public final boolean buyShoppingItem(@PathVariable("itemId") long itemId) throws Exception {
 
-        logger.info("rest getShoppingItem({})", itemId);
+        //logger.info("rest buyShoppingItem({id})", itemId);
 
         ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(itemId);
         if (shoppingItemDTO == null) {
             throw new ResourceNotFoundException();
         }
-        logger.info(shoppingItemDTO.toString());
+        //logger.info(shoppingItemDTO.toString());
 
         // basically null = false ..
         if (shoppingItemDTO.getBought() != null || (shoppingItemDTO.getBought() != null && shoppingItemDTO.getBought().booleanValue() == false)) {

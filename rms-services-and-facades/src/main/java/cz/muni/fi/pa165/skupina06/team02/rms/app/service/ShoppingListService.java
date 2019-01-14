@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Martin Lacko
+ * {@link ShoppingListServiceImpl}
  */
 public interface ShoppingListService {
     /**

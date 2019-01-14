@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Vojtech Prusa
@@ -19,6 +21,26 @@ public class HouseholdDTO {
     private String zipCode;
 
     private String state;
+    
+    private Set<UserDTO> tenants = new HashSet<UserDTO>();
+
+    /**
+     * Getter
+     *
+     * @return tenants instance
+     */
+    public Set<UserDTO> getTenants() {
+        return tenants;
+    }
+
+    /**
+     * Setter
+     * 
+     * @param tenants instance
+     */
+    public void setTenants(Set<UserDTO> tenants) {
+        this.tenants = tenants;
+    }
 
     /**
      * Default Constructor

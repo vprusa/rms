@@ -63,6 +63,19 @@ public class UsersController extends BaseController {
         return userDTO.getId();
     }
 
+    /**
+    *
+    * set users household according ids
+    * 
+    * @param UserDTO as converted json from body
+    * @return UserDTO id
+    * @throws ResourceNotFoundException
+    */
+   @RequestMapping(value = "/sethousehold/{userId}/{householdId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+   public final boolean setHousehold(@PathVariable("userId") long userId,@PathVariable("householdId") long householdId) throws Exception {
+       return userFacade.updateHousheold(userId, householdId);
+   }
+    
     
     /**
     *
