@@ -34,6 +34,26 @@ public class ShoppingItemController extends BaseController {
     @Inject
     private ShoppingItemFacade shoppingItemFacade;
 
+
+    /**
+     * 
+     * Create new shoppingItem and returns its id
+     * 
+     * @param ShoppingItemCreateDTO as body
+     * @return long id
+     * @throws Exception ResourceNotFoundException if empty body
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST /*, produces = MediaType.APPLICATION_JSON_VALUE*/, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public final long createShoppingItem(@RequestBody ShoppingItemCreateDTO shoppingItem) throws Exception {
+        if (shoppingItem == null) {
+            throw new ResourceNotFoundException();
+        }
+        logger.debug("rest createShoppingItem({})", shoppingItem.toString());
+        //ShoppingItemDTO shoppingItemDTO = shoppingItemFacade.getItemById(shoppingItem.getI());
+        long newItemId = shoppingItemFacade.createItem(shoppingItem);
+        return newItemId;
+    }
+    
     /**
      * 
      * Create new shoppingItem and returns its id
@@ -113,5 +133,4 @@ public class ShoppingItemController extends BaseController {
         shoppingItemFacade.buyItem(shoppingItemDTO.getId());
         return true;
     }
-
 }
