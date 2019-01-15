@@ -1,88 +1,77 @@
 <template>
-  <div class="mx-auto container">
+  <div class="mx-auto container" v-if="list">
     <b-card :title="list.name">
-      <b-table responsive hover :items="toBuy()" :fields="item_fields">
-        <template slot="buyer" slot-scope="data">
-          <router-link :to="{name: 'User', param: {id: data.value.id}}" tag="b-button" v-if="data.value">Show
-          </router-link>
-          <b-form inline v-else>
-            <b-form-input type="email" required placeholder="user@email.com"></b-form-input>
-            <b-button type="submit" variant="primary">Set Buyer</b-button>
-          </b-form>
-        </template>
-        <template slot="id" slot-scope="data">
-          <b-button variant="success">Buy</b-button>
-        </template>
-      </b-table>
-      <form></form>
+      <b-card header="Items">
+        <b-table :items="items" :fields="item_fields" :sort-by.sync="sortBy" :sort-desc.sync="sortDesc">
+          <template slot="buyer" slot-scope="data">
+            <div v-if="data.value">{{`${data.value.firstName} ${data.value.lastName}`}}</div>
+            <div v-else>Unassigned</div>
+          </template>
+          <template slot="id" slot-scope="cell">
+            <b-button variant="primary" @click="buyItem(cell.value)" v-if="!cell.item.bought">Buy</b-button>
+            <b-badge variant="success" disabled v-else>Bought</b-badge>
+          </template>
+        </b-table>
+      </b-card>
     </b-card>
   </div>
 </template>
 
 <script>
-  // private Long id;
-  // private String name;
-  // private List<ShoppingItemDTO> shoppingItems;
-  // private HouseholdDTO household;
+  import services from '@/rms-service'
 
   export default {
     name: "ShoppingList",
     data() {
       return {
-        toBuy() {
-          return items.filter(i => i.bought);
-        },
-        list: {
-          id: 1,
-          name: "Zakladne potreby",
-        },
-        item_fields: ["name", "quantity", "buyer", {
-          key: "id",
-          label: "Buy",
-        }],
-        items: [{
-          id: 1,
-          name: "kapusta",
-          quantity: 1,
-          bought: false,
-          buyer: {
-            id: 1,
-            firstName: "Jano",
-            lastName: "Mrkvicka",
-            email: "janko.mrkvicka@email.com"
+        sortBy: 'bought',
+        sortDesc: false,
+        list_id: this.$route.params.id,
+        list: null,
+        item_fields: [
+          {
+            key: 'name',
+            sortable: true
+          }, 'quantity',
+          {
+            key: 'buyer',
+            sortable: true,
           },
-          list: {
-            id: 1,
-            name: "Zakladne potreby",
-          },
-        }, {
-          id: 2,
-          name: "klobasa",
-          quantity: 2,
-          bought: false,
-          buyer: {
-            id: 1,
-            firstName: "Jano",
-            lastName: "Mrkvicka",
-            email: "janko.mrkvicka@email.com"
-          },
-          list: {
-            id: 1,
-            name: "Zakladne potreby",
-          },
-        }, {
-          id: 3,
-          name: "horcica",
-          quantity: 1,
-          bought: false,
-          buyer: null,
-          list: {
-            id: 1,
-            name: "Zakladne potreby",
-          },
-        }],
-      };
+          {
+            key: 'id',
+            label: 'Buy',
+            sortable: true,
+          }
+        ],
+      }
     },
+
+    created() {
+      this.getData();
+    },
+
+    computed: {
+      items() {
+        if (this.list != null) {
+          return this.list.shoppingItems;
+        }
+      },
+    },
+
+    methods: {
+      async getData() {
+        this.list = services.getShoppingList(this.list_id)
+      },
+      async buyItem(id) {
+        if (services.isDev()) {
+          let item = this.items.find(i => i.id === id);
+          item.bought = true;
+        } else {
+          services.buyShoppingItem(id);
+          this.list = service.getShoppingList(this.list_id);
+        }
+      }
+    }
   }
 </script>
 

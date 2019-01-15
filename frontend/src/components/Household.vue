@@ -1,80 +1,100 @@
 <template>
-  <div class="mx-auto container">
-    <b-card :title="household.street + ' ' + household.buildingNumber"
-            :sub-title="household.zipCode + ' ' + household.state">
-    </b-card>
-    <div>
-      <b-card-group deck>
-        <b-card header="Shopping Lists"
-                header-tag="header">
-          <div v-if="lists && lists.length">
-            <b-table responsive hover :items="lists" :fields="list_fields">
+  <div class="mx-auto container" v-if="household">
+    <b-card :title="`${household.street} ${household.buildingNumber}`"
+            :sub-title="`${household.zipCode}, ${household.state}`">
+      <b-card-group>
+        <b-card header="Tenants">
+          <div v-if="tenants && tenants.length > 0">
+            <b-table responsive :items="tenants" :fields="tenant_fields">
               <template slot="id" slot-scope="data">
-                <router-link :to="{name: 'ShoppingList', param: {id: data.value}}">
-                  Show
+                <router-link :to="{ name: 'User', params: { id: data.value }}">
+                  <b-button variant="primary" v-if="data.value === $store.state.user.id">Check</b-button>
+                  <b-button variant="danger" disabled v-else>Check</b-button>
                 </router-link>
               </template>
             </b-table>
-            <div class="mx-auto container">
-              <b-form inline>
-                <b-form-input id="new_list" type="text" required placeholder="Food"></b-form-input>
-                <b-button type="submit" variant="success">Create List</b-button>
-              </b-form>
-            </div>
+          </div>
+          <div v-else>
+            No tenants
           </div>
         </b-card>
-
-        <b-card header="Users"
-                header-tag="header">
-          <b-table responsive hover :items="users" :fields="user_fields">
-            <template slot="id" slot-scope="data">
-              <router-link :to="{name: 'User', param: {id: data.value}}">Show</router-link>
-            </template>
-          </b-table>
-          <div class="mx-auto container">
-            <b-form inline>
-              <b-form-input id="add_user" type="email" required placeholder="user@email.com"></b-form-input>
-              <b-button type="submit" variant="success">Add User</b-button>
-            </b-form>
+        <b-card header="Shopping lists">
+          <div v-if="lists && lists.length > 0">
+            <b-table responsive :items="lists" :fields="list_fields">
+              <template slot="shoppingItems" slot-scope="data">
+                {{data.value.length}}
+              </template>
+              <template slot="household" slot-scope="data">
+                <router-link :to="{name: 'Household', params: { id: data.value.id }}">
+                  {{`${data.value.street} ${data.value.buildingNumber}`}}
+                </router-link>
+              </template>
+              <template slot="id" slot-scope="data">
+                <router-link :to="{name: 'ShoppingList', params: { id: data.value }}">
+                  <b-button variant="primary">Check</b-button>
+                </router-link>
+              </template>
+            </b-table>
+          </div>
+          <div v-else>
+            No lists
           </div>
         </b-card>
       </b-card-group>
-    </div>
+    </b-card>
   </div>
 </template>
 
 <script>
+  import services from '@/rms-service'
+
   export default {
     name: "Household",
     data() {
       return {
-        household: {
-          id: 1,
-          street: "Kratka",
-          buildingNumber: "12a",
-          zipCode: "44 212",
-          state: "Czechia"
-        },
-        user_fields: [
-          "firstName", "lastName", {
-            key: "id",
-            label: "Link"
-          }
-        ],
-        users: [{
-          id: 1,
-          firstName: "Jano",
-          lastName: "Mrkvicka",
-          email: "janko.mrkvicka@email.com"
+        household_id: this.$route.params.id,
+        household: null,
+        tenant_fields: ['email', 'firstName', 'lastName', {
+          key: 'id',
+          label: 'Check',
         }],
-        list_fields: ["name", {
-          key: "id",
-          label: "Link"
+        list_fields: ['name', {
+          key: 'shoppingItems',
+          label: 'To Buy'
+        }, {
+          key: 'household',
+          label: 'Household'
+        }, {
+          key: 'id',
+          label: 'Check',
         }],
-        lists: [{
-          id: 1,
-          name: "Zakladne potreby",
-        }]
+      }
+    },
+
+    created() {
+      this.getData()
+    },
+
+    computed: {
+      tenants() {
+        if (this.household != null && this.household.tenants != null) {
+          return this.household.tenants;
+        } else {
+          return [];
+        }
+      },
+      lists() {
+        if (this.household != null && this.household.lists != null) {
+          return this.household.lists;
+        } else {
+          return [];
+        }
+      }
+    },
+
+    methods: {
+      async getData() {
+        this.household = await services.getHousehold(this.household_id);
       }
     }
   }
