@@ -39,7 +39,6 @@ public class ShoppingListController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final List<ShoppingListDTO> getShoppingItem() {
-
         logger.debug("rest getShoppingList()");
         return shoppingListFacade.getAllShoppingLists();
     }

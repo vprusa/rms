@@ -1,31 +1,39 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.dto;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author Vojtech Prusa
- *
- *         DTO class of User to transfer data between services
- *
+ * <p>
+ * DTO class of User to transfer data between services
  */
-public class UserDTO
-{
+public class UserDTO {
 
     private Long id;
-  
+
     private String password;
-    
+
     private String email;
-    
+
     private String firstName;
 
     private String lastName;
-    
+
+    private Set<HouseholdDTO> households = new HashSet<>();
+
+
+    private List<ShoppingItemDTO> items = new ArrayList<>();
+
     /**
      * Constructor
      */
-    public UserDTO(){
-        
+    public UserDTO() {
+
     }
-    
+
     /**
      * Constructor
      *
@@ -34,16 +42,28 @@ public class UserDTO
      * @param email
      * @param firstName
      * @param lastName
+     * @param households
      */
-    public UserDTO(Long id, String password, String email, String firstName, String lastName) {
+    public UserDTO(Long id, String password, String email, String firstName,
+                   String lastName, Set<HouseholdDTO> households, List<ShoppingItemDTO> items) {
         this.id = id;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.households = households;
+        this.items = items;
     }
 
-    
+    public List<ShoppingItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ShoppingItemDTO> items) {
+        this.items = items;
+    }
+
+
     /**
      * Getter
      *
@@ -55,7 +75,7 @@ public class UserDTO
 
     /**
      * Setter
-     * 
+     *
      * @param id instance
      */
     public void setId(Long id) {
@@ -73,7 +93,7 @@ public class UserDTO
 
     /**
      * Setter
-     * 
+     *
      * @param password instance
      */
     public void setPassword(String password) {
@@ -91,7 +111,7 @@ public class UserDTO
 
     /**
      * Setter
-     * 
+     *
      * @param email instance
      */
     public void setEmail(String email) {
@@ -109,7 +129,7 @@ public class UserDTO
 
     /**
      * Setter
-     * 
+     *
      * @param firstName instance
      */
     public void setFirstName(String firstName) {
@@ -127,11 +147,19 @@ public class UserDTO
 
     /**
      * Setter
-     * 
+     *
      * @param lastName instance
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<HouseholdDTO> getHouseholds() {
+        return households;
+    }
+
+    public void setHouseholds(Set<HouseholdDTO> households) {
+        this.households = households;
     }
 
     /* (non-Javadoc)
@@ -173,5 +201,4 @@ public class UserDTO
         return "UserDTO [id=" + id + ", password=" + password + ", email=" + email + ", firstName=" + firstName
                 + ", lastName=" + lastName + "]";
     }
-    
 }
