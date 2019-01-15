@@ -59,10 +59,6 @@ public class Household {
      */
     public void addTenant(User tenant) {
         tenants.add(tenant);
-        // TODO some other magic like:
-        // https://github.com/fi-muni/PA165/blob/864034ae6ae116da53c34e45b92edfe3a16b346b/eshop-persistence/src/main/java/cz/fi/muni/pa165/entity/Product.java#L81
-        // g.e.:
-        // tenant.addHousehold(this);
     }
 
     /**

@@ -1,14 +1,11 @@
 package cz.muni.fi.pa165.skupina06.team02.rms.app.dto;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Vojtech Prusa
- *
- *         DTO class of Household to transfer data between services
- *         
+ * <p>
+ * DTO class of Household to transfer data between services
  */
 public class HouseholdDTO {
 
@@ -21,31 +18,13 @@ public class HouseholdDTO {
     private String zipCode;
 
     private String state;
-    
-    private Set<UserPublicDTO> tenants = new HashSet<UserPublicDTO>();
 
-    /**
-     * Getter
-     *
-     * @return tenants instance
-     */
-    public Set<UserPublicDTO> getTenants() {
-        return tenants;
-    }
+    private Set<UserPublicDTO> tenants = new HashSet<>();
 
-    /**
-     * Setter
-     * 
-     * @param tenants instance
-     */
-    public void setTenants(Set<UserPublicDTO> tenants) {
-        this.tenants = tenants;
-    }
+    private List<ShoppingListDTO> shoppingLists = new ArrayList<>();
 
     /**
      * Default Constructor
-     *
-     * @param id
      */
     public HouseholdDTO() {
     }
@@ -60,6 +39,35 @@ public class HouseholdDTO {
         this.id = id;
     }
 
+    public HouseholdDTO(Long id, String street, String buildingNumber, String zipCode, String state,
+                        Set<UserPublicDTO> tenants, List<ShoppingListDTO> shoppingLists) {
+        this.id = id;
+        this.street = street;
+        this.buildingNumber = buildingNumber;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.tenants = tenants;
+        this.shoppingLists = shoppingLists;
+    }
+
+    /**
+     * Getter
+     *
+     * @return tenants instance
+     */
+    public Set<UserPublicDTO> getTenants() {
+        return tenants;
+    }
+
+    /**
+     * Setter
+     *
+     * @param tenants instance
+     */
+    public void setTenants(Set<UserPublicDTO> tenants) {
+        this.tenants = tenants;
+    }
+
     /**
      * @return id
      */
@@ -72,6 +80,14 @@ public class HouseholdDTO {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<ShoppingListDTO> getShoppingLists() {
+        return shoppingLists;
+    }
+
+    public void setShoppingLists(List<ShoppingListDTO> shoppingLists) {
+        this.shoppingLists = shoppingLists;
     }
 
     /**
@@ -132,7 +148,7 @@ public class HouseholdDTO {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -149,7 +165,7 @@ public class HouseholdDTO {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
