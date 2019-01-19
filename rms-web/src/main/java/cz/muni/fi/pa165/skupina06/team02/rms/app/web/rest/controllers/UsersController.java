@@ -117,6 +117,15 @@ public class UsersController extends BaseController {
         return userFacade.getAllUsers();
     }
 
+    public UserDTO getUserById( long id) throws Exception {
+        logger.debug("rest getUser({})", id);
+        UserDTO userDTO = userFacade.findUserById(id);
+        if (userDTO == null) {
+            throw new ResourceNotFoundException();
+        }
+        return userDTO;
+    }
+    
     /**
      *
      * getting user according to id
@@ -127,15 +136,21 @@ public class UsersController extends BaseController {
      */
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final UserDTO getUser(@PathVariable("id") long id) throws Exception {
-
-        logger.debug("rest getUser({})", id);
-        UserDTO userDTO = userFacade.findUserById(id);
-        if (userDTO == null) {
-            throw new ResourceNotFoundException();
-        }
-        return userDTO;
-
+        return getUserById(id);
     }
+    
+    /**
+    *
+    * getting user according to id
+    * 
+    * @param id user identifier
+    * @return UserDTO
+    * @throws ResourceNotFoundException
+    */
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+   public final UserDTO getUserShort(@PathVariable("id") long id) throws Exception {
+       return getUserById(id);
+   }
 
     /**
      *
