@@ -125,7 +125,7 @@ public class UsersController extends BaseController {
      * @return UserDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final UserDTO getUser(@PathVariable("id") long id) throws Exception {
 
         logger.debug("rest getUser({})", id);
@@ -145,7 +145,7 @@ public class UsersController extends BaseController {
      * @return UserDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/{string}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/email/{string}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final UserDTO getUserByEmail(@PathVariable("email") String email) throws Exception {
 
         logger.debug("rest getUser({})", email);
