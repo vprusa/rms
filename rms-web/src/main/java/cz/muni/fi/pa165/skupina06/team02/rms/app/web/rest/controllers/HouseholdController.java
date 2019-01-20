@@ -3,9 +3,11 @@ package cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.controllers;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.HouseholdDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingItemDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.ShoppingListDTO;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.dto.UserPublicDTO;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.HouseholdFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingItemFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.ShoppingListFacade;
+import cz.muni.fi.pa165.skupina06.team02.rms.app.facade.UserFacade;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.ApiUris;
 import cz.muni.fi.pa165.skupina06.team02.rms.app.web.rest.exceptions.ResourceNotFoundException;
 
@@ -32,6 +34,10 @@ public class HouseholdController extends BaseController {
 
     final static Logger logger = LoggerFactory.getLogger(HouseholdController.class);
 
+
+    @Inject
+    private UserFacade userFacade;
+    
     @Inject
     private HouseholdFacade housheoldFacade;
 
@@ -66,4 +72,5 @@ public class HouseholdController extends BaseController {
 
         return householdDTO;
     }
+    
 }
