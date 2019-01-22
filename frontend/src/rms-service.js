@@ -60,6 +60,11 @@ export default {
       .then(response => response.data)
       .catch(err => console.log(err));
   },
+  getHousheoldShoppingList(id) {
+    return api.get(`/shoppinglists/${Number(id)}`)
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  },
   getShoppingItem(id) {
     return api.get(`/shoppingitems/${Number(id)}`);
   },
