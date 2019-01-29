@@ -61,6 +61,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         ShoppingList adamsSl = shoppingList("AdamsSL", adamsH, null);
         ShoppingItem orange = shoppingItem("orange", false, adam, 10l, adamsSl);
+        ShoppingItem apple = shoppingItem("apple", false, adam, 15l, adamsSl);
+        ShoppingItem berry = shoppingItem("berry", false, adam, 20l, adamsSl);
         adamsH.addToShoppingLists(adamsSl);
         //adamsSl.addItem(orange);
         // order(admin, daysBeforeNow(10), OrderState.DONE, orderItem(duck, 5),
