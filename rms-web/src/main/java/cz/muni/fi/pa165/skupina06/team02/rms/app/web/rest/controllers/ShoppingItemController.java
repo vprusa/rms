@@ -107,9 +107,9 @@ public class ShoppingItemController extends BaseController {
         //logger.info(shoppingItemDTO.toString());
 
         // basically null = false ..
-        if (shoppingItemDTO.getBought() != null || (shoppingItemDTO.getBought() != null && shoppingItemDTO.getBought().booleanValue() == false)) {
+        /*if (shoppingItemDTO.getBought() != null || (shoppingItemDTO.getBought() != null && shoppingItemDTO.getBought().booleanValue() == false)) {
             return false;
-        }
+        }*/
         shoppingItemFacade.buyItem(shoppingItemDTO.getId());
         return true;
     }

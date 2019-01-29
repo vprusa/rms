@@ -52,7 +52,9 @@
 
     computed: {
       items() {
+        console.log("computed");
         if (this.list != null) {
+          console.log("computedNotNull");
           return this.list.shoppingItems;
         }
       },
@@ -60,15 +62,17 @@
 
     methods: {
       async getData() {
-        this.list = services.getShoppingList(this.list_id)
+        console.log("getData");
+        this.list = await services.getCurrentHousheoldShoppingList(this.list_id)
       },
       async buyItem(id) {
+        console.log("buyItem");
         if (services.isDev()) {
           let item = this.items.find(i => i.id === id);
           item.bought = true;
         } else {
-          services.buyShoppingItem(id);
-          this.list = service.getShoppingList(this.list_id);
+          await services.buyShoppingItem(id);
+          this.list = await services.getCurrentHousheoldShoppingList(this.list_id);
         }
       }
     }

@@ -65,6 +65,13 @@ export default {
       .then(response => response.data)
       .catch(err => console.log(err));
   },
+  getCurrentHousheoldShoppingList(id) {
+    return api.get(`/households/current`)
+        .then(response => /*{console.log(response.data[0].shoppingLists[0]); 
+        */response.data[0].shoppingLists[0]/*}*/)
+      .catch(err => console.log(err));
+  },
+
   getShoppingItem(id) {
     return api.get(`/shoppingitems/${Number(id)}`);
   },
